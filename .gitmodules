@@ -19,6 +19,9 @@
 [submodule "3party/Vulkan-Headers"]
 	path = 3party/Vulkan-Headers
 	url = https://github.com/KhronosGroup/Vulkan-Headers.git
+[submodule "3party/boost"]
+	path = 3party/boost
+	url = https://github.com/boostorg/boost.git
 [submodule "fonekk_priv"]
 	path = fonekk_priv
 	url = git@github.com:seckalou/fonekk_priv.git
