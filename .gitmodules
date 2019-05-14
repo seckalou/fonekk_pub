@@ -22,6 +22,7 @@
 [submodule "3party/boost"]
 	path = 3party/boost
 	url = https://github.com/boostorg/boost.git
+	branch = boost-1.68.0      
 [submodule "fonekk_priv"]
 	path = fonekk_priv
 	url = git@github.com:seckalou/fonekk_priv.git
