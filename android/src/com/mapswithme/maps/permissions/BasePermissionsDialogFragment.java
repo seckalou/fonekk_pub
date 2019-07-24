@@ -93,20 +93,23 @@ abstract class BasePermissionsDialogFragment extends BaseMwmDialogFragment
     res.setContentView(content);
     View button = content.findViewById(getFirstActionButton());
     if (button != null)
-      button.setOnClickListener(this);
+      button.setVisibility(View.INVISIBLE); //button.setOnClickListener(this);
+
+
     button = content.findViewById(getContinueActionButton());
     if (button != null)
       button.setOnClickListener(this);
 
-    ImageView image = (ImageView) content.findViewById(R.id.iv__image);
-    if (image != null)
-      image.setImageResource(getImageRes());
+//    ImageView image = (ImageView) content.findViewById(R.id.iv__image);
+//    if (image != null)
+//      image.setImageResource(getImageRes());
+
     TextView title = (TextView) content.findViewById(R.id.tv__title);
     if (title != null)
       title.setText(getTitleRes());
     TextView subtitle = (TextView) content.findViewById(R.id.tv__subtitle1);
     if (subtitle != null)
-      subtitle.setText(getSubtitleRes());
+      subtitle.setVisibility(View.INVISIBLE); // subtitle.setText(getSubtitleRes());
 
     return res;
   }

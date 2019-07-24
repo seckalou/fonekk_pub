@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.mapswithme.maps.ads.Banner;
 import com.mapswithme.maps.analytics.AdvertisingObserver;
@@ -27,6 +28,7 @@ import com.mapswithme.maps.news.NewsFragment;
 import com.mapswithme.maps.news.WelcomeDialogFragment;
 import com.mapswithme.maps.permissions.PermissionsDialogFragment;
 import com.mapswithme.maps.permissions.StoragePermissionsDialogFragment;
+import com.mapswithme.maps.settings.IdDialogFragment;
 import com.mapswithme.util.Config;
 import com.mapswithme.util.Counters;
 import com.mapswithme.util.PermissionsUtils;
@@ -35,6 +37,7 @@ import com.mapswithme.util.UiUtils;
 import com.mapswithme.util.concurrency.UiThread;
 import com.mapswithme.util.log.Logger;
 import com.mapswithme.util.log.LoggerFactory;
+import com.mapswithme.util.permissions.PermissionsResult;
 import com.mapswithme.util.statistics.PushwooshHelper;
 import com.my.tracker.MyTracker;
 
@@ -52,9 +55,11 @@ public class SplashActivity extends AppCompatActivity
 
   private View mIvLogo;
   private View mAppName;
+  private ProgressBar mProgressBar;
 
   private boolean mPermissionsGranted;
   private boolean mNeedStoragePermission;
+  private boolean mNeedLocationPermission;
   private boolean mCanceled;
   private boolean mWaitForAdvertisingInfo;
 
@@ -79,6 +84,15 @@ public class SplashActivity extends AppCompatActivity
   };
 
   @NonNull
+  private final Runnable mIdDelayedTask = new Runnable()
+  {
+    @Override
+    public void run() {
+      IdDialogFragment.show(SplashActivity.this);
+    }
+  };
+
+  @NonNull
   private final Runnable mInitCoreDelayedTask = new Runnable()
   {
     @Override
@@ -90,6 +104,8 @@ public class SplashActivity extends AppCompatActivity
         UiThread.runLater(mFinalDelayedTask);
         return;
       }
+
+      mProgressBar.setProgress(25);
 
       ExternalLibrariesMediator mediator = MwmApplication.from(getApplicationContext()).getMediator();
       if (!mediator.isAdvertisingInfoObtained())
@@ -123,6 +139,9 @@ public class SplashActivity extends AppCompatActivity
 //    Run delayed task because resumeDialogs() must see the actual value of mCanceled flag,
 //    since onPause() callback can be blocked because of UI thread is busy with framework
 //    initialization.
+
+      mProgressBar.setProgress(50);
+
       UiThread.runLater(mFinalDelayedTask);
     }
   };
@@ -165,6 +184,7 @@ public class SplashActivity extends AppCompatActivity
     UiThread.cancelDelayedTasks(mPermissionsDelayedTask);
     UiThread.cancelDelayedTasks(mInitCoreDelayedTask);
     UiThread.cancelDelayedTasks(mFinalDelayedTask);
+    UiThread.cancelDelayedTasks(mIdDelayedTask);
     Counters.initCounters(this);
     initView();
   }
@@ -232,28 +252,30 @@ public class SplashActivity extends AppCompatActivity
       Config.migrateCountersToSharedPrefs();
       Counters.setMigrationExecuted();
     }
+
+    UiThread.runLater(mIdDelayedTask, DELAY);
     
-    boolean isFirstLaunch = WelcomeDialogFragment.isFirstLaunch(this);
-    if (isFirstLaunch)
-      MwmApplication.from(this).setFirstLaunch(true);
-
-    if (isFirstLaunch || WelcomeDialogFragment.recreate(this))
-    {
-      UiThread.runLater(mWelcomeScreenDelayedTask, FIRST_START_DELAY);
-      return;
-    }
-
-    processPermissionGranting();
+//    boolean isFirstLaunch = WelcomeDialogFragment.isFirstLaunch(this);
+//    if (isFirstLaunch)
+//      MwmApplication.from(this).setFirstLaunch(true);
+//
+//    if (isFirstLaunch || WelcomeDialogFragment.recreate(this))
+//    {
+//      UiThread.runLater(mWelcomeScreenDelayedTask, FIRST_START_DELAY);
+//      return;
+//    }
+//
+//    processPermissionGranting();
   }
 
   private void processPermissionGranting()
   {
-    mPermissionsGranted = PermissionsUtils.isExternalStorageGranted();
+    mPermissionsGranted = PermissionsUtils.isLocationGranted(this) && PermissionsUtils.isExternalStorageGranted();
     DialogFragment storagePermissionsDialog = StoragePermissionsDialogFragment.find(this);
     DialogFragment permissionsDialog = PermissionsDialogFragment.find(this);
     if (!mPermissionsGranted)
     {
-      if (mNeedStoragePermission || storagePermissionsDialog != null)
+      if (mNeedLocationPermission || mNeedStoragePermission || storagePermissionsDialog != null)
       {
         if (permissionsDialog != null)
           permissionsDialog.dismiss();
@@ -350,6 +372,8 @@ public class SplashActivity extends AppCompatActivity
     {
       UiUtils.hide(mIvLogo, mAppName);
     }
+
+    mProgressBar.setProgress(100);
   }
 
   private void showExternalStorageErrorDialog()
@@ -378,9 +402,12 @@ public class SplashActivity extends AppCompatActivity
     if (grantResults.length == 0)
       return;
 
-    mPermissionsGranted = PermissionsUtils.computePermissionsResult(permissions, grantResults)
-                                          .isExternalStorageGranted();
-    mNeedStoragePermission = !mPermissionsGranted;
+    PermissionsResult permissionsResults = PermissionsUtils.computePermissionsResult(permissions, grantResults);
+    mNeedStoragePermission = !(permissionsResults.isExternalStorageGranted());
+    mNeedLocationPermission = !(permissionsResults.isLocationGranted());
+
+    mPermissionsGranted = !(mNeedLocationPermission || mNeedStoragePermission);
+
   }
 
   @Override
@@ -400,7 +427,8 @@ public class SplashActivity extends AppCompatActivity
     UiUtils.setupStatusBar(this);
     setContentView(R.layout.activity_splash);
     mIvLogo = findViewById(R.id.iv__logo);
-    mAppName = findViewById(R.id.tv__app_name);
+//    mAppName = findViewById(R.id.tv__app_name);
+    mProgressBar = findViewById(R.id.progress_bar);
   }
 
   private void init()

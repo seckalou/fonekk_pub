@@ -15,6 +15,7 @@ import java.util.Map;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.support.v4.app.ActivityCompat.shouldShowRequestPermissionRationale;
 
@@ -24,7 +25,7 @@ public final class PermissionsUtils
       {
           WRITE_EXTERNAL_STORAGE,
           ACCESS_COARSE_LOCATION,
-          ACCESS_FINE_LOCATION
+          ACCESS_FINE_LOCATION, READ_PHONE_STATE
       };
 
   private static final String[] LOCATION_PERMISSIONS = new String[]
@@ -75,6 +76,11 @@ public final class PermissionsUtils
     return checkPermissions(MwmApplication.get()).isExternalStorageGranted();
   }
 
+  public static boolean isPhoneStateGranted()
+  {
+    return  checkPermissions(MwmApplication.get()).isPhoneStateGranted();
+  }
+
   @NonNull
   private static PermissionsResult checkPermissions(@NonNull Context context)
   {
@@ -98,7 +104,10 @@ public final class PermissionsUtils
                                ? result.get(ACCESS_COARSE_LOCATION) : false)
                               || (result.containsKey(ACCESS_FINE_LOCATION)
                                   ? result.get(ACCESS_FINE_LOCATION) : false);
-    return new PermissionsResult(externalStorageGranted, locationGranted);
+    boolean phoneStateGranted = result.containsKey(READ_PHONE_STATE)
+                                ? result.get(READ_PHONE_STATE) : false;
+
+    return new PermissionsResult(externalStorageGranted, locationGranted, phoneStateGranted);
   }
 
   public static void requestPermissions(@NonNull Activity activity, int code)

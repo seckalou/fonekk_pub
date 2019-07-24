@@ -69,7 +69,7 @@ public class StoragePermissionsDialogFragment extends BaseMwmDialogFragment impl
     content.findViewById(R.id.btn__exit).setOnClickListener(this);
     content.findViewById(R.id.btn__settings).setOnClickListener(this);
     ImageView image = (ImageView) content.findViewById(R.id.iv__image);
-    image.setImageResource(R.drawable.img_no_storage_permission);
+    image.setImageResource(R.drawable.ic_error_outline_black_48dp);
     TextView title = (TextView) content.findViewById(R.id.tv__title);
     title.setText(R.string.onboarding_storage_permissions_title);
     TextView subtitle = (TextView) content.findViewById(R.id.tv__subtitle1);

@@ -4,11 +4,13 @@ public final class PermissionsResult
 {
   private final boolean mExternalStorageGranted;
   private final boolean mLocationGranted;
+  private final boolean mPhoneStateGranted;
 
-  public PermissionsResult(boolean externalStorageGranted, boolean locationGranted)
+  public PermissionsResult(boolean externalStorageGranted, boolean locationGranted, boolean phoneStateGranted)
   {
     mExternalStorageGranted = externalStorageGranted;
     mLocationGranted = locationGranted;
+    mPhoneStateGranted = phoneStateGranted;
   }
 
   public boolean isExternalStorageGranted()
@@ -20,4 +22,6 @@ public final class PermissionsResult
   {
     return mLocationGranted;
   }
+
+  public boolean isPhoneStateGranted() { return mPhoneStateGranted; }
 }

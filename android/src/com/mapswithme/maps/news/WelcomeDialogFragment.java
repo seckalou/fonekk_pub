@@ -106,9 +106,9 @@ public class WelcomeDialogFragment extends BaseMwmDialogFragment implements View
     res.setContentView(content);
     content.findViewById(R.id.btn__continue).setOnClickListener(this);
     ImageView image = content.findViewById(R.id.iv__image);
-    image.setImageResource(R.drawable.img_welcome);
-    TextView title = content.findViewById(R.id.tv__title);
-    title.setText(R.string.onboarding_welcome_title);
+    image.setImageResource(R.drawable.name_logo_big);
+//    TextView title = content.findViewById(R.id.tv__title);
+//    title.setText(R.string.onboarding_welcome_title);
     TextView subtitle = content.findViewById(R.id.tv__subtitle1);
     subtitle.setText(R.string.onboarding_welcome_first_subtitle);
     TextView terms = content.findViewById(R.id.tv__subtitle2);
