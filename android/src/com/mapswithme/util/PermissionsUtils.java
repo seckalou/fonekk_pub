@@ -73,7 +73,7 @@ public final class PermissionsUtils
 
   public static boolean isExternalStorageGranted()
   {
-    return true; // for now //checkPermissions(MwmApplication.get()).isExternalStorageGranted();
+    return checkPermissions(MwmApplication.get()).isExternalStorageGranted();
   }
 
   public static boolean isPhoneStateGranted()
