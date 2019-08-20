@@ -72,6 +72,7 @@ public class Authorizer implements AuthorizationListener
     // because of 'setTargetFragment' paradigm doesn't survive the activity configuration change
     // due to this issue https://issuetracker.google.com/issues/36969568
     fragment.show(mFragment.getChildFragmentManager(), name);
+
   }
 
   public final void onTargetFragmentResult(int resultCode, @Nullable Intent data)
@@ -130,9 +131,9 @@ public class Authorizer implements AuthorizationListener
     return mIsAuthorizationInProgress;
   }
 
-  public boolean isAuthorized()
+  public static boolean isAuthorized()
   {
-    return Framework.nativeIsUserAuthenticated();
+    return false; //Framework.nativeIsUserAuthenticated();
   }
 
   public interface Callback

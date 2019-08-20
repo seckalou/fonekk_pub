@@ -12,12 +12,17 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewManager;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mapswithme.maps.R;
+import com.mapswithme.maps.auth.Authorizer;
+import com.mapswithme.maps.auth.TargetFragmentCallback;
 import com.mapswithme.maps.base.BaseMwmDialogFragment;
 import com.mapswithme.util.PermissionsUtils;
 import com.mapswithme.util.log.Logger;
@@ -31,6 +36,9 @@ abstract class BasePermissionsDialogFragment extends BaseMwmDialogFragment
   private static final String ARG_REQUEST_CODE = "arg_request_code";
 
   private int mRequestCode;
+  protected Authorizer mAuthorizer;
+
+  private TextView subtitle;
 
   @SuppressWarnings("TryWithIdenticalCatches")
   @Nullable
@@ -76,6 +84,13 @@ abstract class BasePermissionsDialogFragment extends BaseMwmDialogFragment
   }
 
   @Override
+  public void onStart()
+  {
+    super.onStart();
+    mAuthorizer = new Authorizer(this);
+  }
+
+  @Override
   protected int getCustomTheme()
   {
     // We can't read actual theme, because permissions are not granted yet.
@@ -90,30 +105,44 @@ abstract class BasePermissionsDialogFragment extends BaseMwmDialogFragment
     res.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     View content = View.inflate(getActivity(), getLayoutRes(), null);
+
+    LinearLayout l = (LinearLayout)content.findViewById(R.id.theLayout);
+    l.setGravity(Gravity.CENTER);
+
     res.setContentView(content);
     View button = content.findViewById(getFirstActionButton());
     if (button != null)
-      button.setVisibility(View.INVISIBLE); //button.setOnClickListener(this);
-
+      button.setVisibility(View.INVISIBLE);
 
     button = content.findViewById(getContinueActionButton());
     if (button != null)
       button.setOnClickListener(this);
 
-//    ImageView image = (ImageView) content.findViewById(R.id.iv__image);
-//    if (image != null)
+    ImageView image = (ImageView) content.findViewById(R.id.iv__image);
+    if (image != null)
+      ((ViewManager)image.getParent()).removeView(image);
 //      image.setImageResource(getImageRes());
 
     TextView title = (TextView) content.findViewById(R.id.tv__title);
     if (title != null)
       title.setText(getTitleRes());
-    TextView subtitle = (TextView) content.findViewById(R.id.tv__subtitle1);
-    if (subtitle != null)
-      subtitle.setVisibility(View.INVISIBLE); // subtitle.setText(getSubtitleRes());
+    subtitle = (TextView) content.findViewById(R.id.tv__subtitle1);
+    if (subtitle != null) {
+      subtitle.setText(getSubtitleRes());
+      subtitle.setY(-1);
+    }
 
     return res;
   }
 
+  protected void showSubtitle(boolean show){
+
+    if(show)
+      subtitle.setVisibility(View.VISIBLE);
+    else
+      subtitle.setVisibility(View.INVISIBLE);
+
+  }
   @DrawableRes
   protected int getImageRes()
   {
@@ -152,8 +181,23 @@ abstract class BasePermissionsDialogFragment extends BaseMwmDialogFragment
       return;
     }
 
-    if (v.getId() == getContinueActionButton())
-      PermissionsUtils.requestPermissions(getActivity(), mRequestCode);
+    if (v.getId() == getContinueActionButton()){
+//      mAuthorizer.authorize();
+
+      if(!isPermissionGranted())
+        PermissionsUtils.requestPermissions(getActivity(), mRequestCode);
+      else if (!isAuthorizationGranted())
+        mAuthorizer.authorize();
+    }
+
+  }
+
+  public static boolean isPermissionGranted(){
+    return PermissionsUtils.isLocationGranted() && PermissionsUtils.isExternalStorageGranted();
+  }
+
+  public static boolean isAuthorizationGranted(){
+    return Authorizer.isAuthorized();
   }
 
   protected int getRequestCode()

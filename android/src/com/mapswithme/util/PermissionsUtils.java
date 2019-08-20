@@ -23,9 +23,9 @@ public final class PermissionsUtils
 {
   private static final String[] PERMISSIONS = new String[]
       {
-          WRITE_EXTERNAL_STORAGE,
           ACCESS_COARSE_LOCATION,
-          ACCESS_FINE_LOCATION, READ_PHONE_STATE
+          ACCESS_FINE_LOCATION, READ_PHONE_STATE,
+              WRITE_EXTERNAL_STORAGE
       };
 
   private static final String[] LOCATION_PERMISSIONS = new String[]
@@ -73,7 +73,7 @@ public final class PermissionsUtils
 
   public static boolean isExternalStorageGranted()
   {
-    return checkPermissions(MwmApplication.get()).isExternalStorageGranted();
+    return true; // for now //checkPermissions(MwmApplication.get()).isExternalStorageGranted();
   }
 
   public static boolean isPhoneStateGranted()

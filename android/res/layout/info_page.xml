@@ -7,6 +7,7 @@
   android:layout_height="match_parent">
 
   <LinearLayout
+      android:id="@+id/theLayout"
       android:layout_width="wrap_content"
       android:layout_height="472dp"
       android:layout_gravity="center"
@@ -19,7 +20,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/margin_double"
         android:layout_marginRight="@dimen/margin_double"
-        android:layout_marginBottom="@dimen/margin_base"
+        android:layout_marginBottom="6dp"
         android:fontFamily="@string/robotoMedium"
         android:gravity="center_horizontal"
         android:textAppearance="@style/MwmTextAppearance.Title"
@@ -44,7 +45,9 @@
         android:layout_marginBottom="@dimen/margin_base"
         android:gravity="center_horizontal"
         android:textAppearance="@style/MwmTextAppearance.Body1.Secondary"
+        android:textSize="18sp"
         tools:text="@string/onboarding_welcome_first_subtitle" />
+
 
     <TextView
         android:id="@+id/tv__subtitle2"

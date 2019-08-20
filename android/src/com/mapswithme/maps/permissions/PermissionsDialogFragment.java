@@ -1,6 +1,7 @@
 package com.mapswithme.maps.permissions;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -11,10 +12,16 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-
+import android.widget.TextView;
+import android.view.View;
 import com.mapswithme.maps.R;
+import com.mapswithme.maps.auth.Authorizer;
+import com.mapswithme.maps.auth.TargetFragmentCallback;
+import com.mapswithme.maps.bookmarks.data.BookmarkCategory;
+import android.view.View.OnFocusChangeListener;
 
-public class PermissionsDialogFragment extends BasePermissionsDialogFragment
+public class PermissionsDialogFragment extends BasePermissionsDialogFragment implements TargetFragmentCallback
+
 {
   @Nullable
   public static DialogFragment show(@NonNull FragmentActivity activity, int requestCode)
@@ -50,7 +57,7 @@ public class PermissionsDialogFragment extends BasePermissionsDialogFragment
   @Override
   protected int getSubtitleRes()
   {
-    return R.string.onboarding_permissions_message;
+    return R.string.onboarding_setting_message;
   }
 
   @LayoutRes
@@ -94,5 +101,26 @@ public class PermissionsDialogFragment extends BasePermissionsDialogFragment
   {
     super.onCancel(dialog);
     getActivity().finish();
+  }
+
+  @Override
+  public void onTargetFragmentResult(int resultCode, @Nullable Intent data) {
+  }
+
+  @Override
+  public boolean isTargetAdded() {
+    return false;
+  }
+
+
+  @Override
+  public  void onResume(){
+    super.onResume();
+
+//    showSubtitle(true);
+
+    if (isPermissionGranted() && !isAuthorizationGranted())
+      mAuthorizer.authorize();
+
   }
 }

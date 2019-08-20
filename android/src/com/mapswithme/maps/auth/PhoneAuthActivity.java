@@ -15,6 +15,7 @@ public class PhoneAuthActivity extends BaseMwmExtraTitleActivity
   {
     final Intent i = new Intent(fragment.getContext(), PhoneAuthActivity.class);
     i.putExtra(EXTRA_TITLE, fragment.getString(R.string.authorization_button_sign_in));
+    i.putExtra(EXTRA_CORE_NEEDED, false);
     fragment.startActivityForResult(i, Constants.REQ_CODE_PHONE_AUTH_RESULT);
   }
 

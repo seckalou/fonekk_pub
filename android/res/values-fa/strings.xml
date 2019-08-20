@@ -2008,4 +2008,5 @@
 	<string name="type.wheelchair.no">بدون دسترسی با صندلی چرخ دار</string>
 	<string name="type.wheelchair.yes">دسترسی کامل با صندلی چرخ دار</string>
 	<string name="type.building_part">ساختما</string>
+    <string name="sign_message_code">You must have received an sms with you activation code. Please, enter it here:</string>
 </resources>

@@ -156,7 +156,7 @@
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Name</string>
 	<!-- Editor title above street and house number -->
-	<string name="address">Address</string>
+	<string name="address" translatable="false">Address</string>
 	<!-- Place Page - Remove Pin button -->
 	<string name="remove_pin">Remove Pin</string>
 	<!-- Add bookmark dialog - bookmark set, Bookmarks dialog - Bookmark set cell -->
@@ -811,7 +811,7 @@
 	<string name="onboarding_notifications_title">Enable updates notifications</string>
 	<string name="onboarding_location_title">Help us find you</string>
 	<string name="onboarding_location_message">In order for you to use navigation and the other app functions, fonnek needs access to your geoposition.</string>
-	<string name="onboarding_permissions_title">Let\'s setup your device...</string>
+	<string name="onboarding_permissions_title">Let\'s setup your device</string>
 	<string name="onboarding_permissions_message">So you can download maps, see places and traffic near you and use navigation.</string>
 	<string name="onboarding_welcome_second_subtitle">By launching the application, you agree to &lt;a href="%1$s">Terms of Use&lt;/a> and &lt;a href="%2$s">Privacy Policy&lt;/a>.</string>
 	<string name="dialog_incorrect_feature_position">Change location</string>
@@ -1024,7 +1024,7 @@
 	<string name="dialog_taxi_offline">Taxi ordering is unavailable in offline mode.</string>
 	<string name="dialog_taxi_error">Taxi ordering is temporarily unavailable.</string>
 	<!-- Abbreviated for all languages. -->
-	<string name="advertisement">AD</string>
+	<string name="advertisement" translatable="false">AD</string>
 	<string name="mobile_data_dialog">Use mobile internet to show detailed information?</string>
 	<string name="mobile_data_option_always">Use Always</string>
 	<string name="mobile_data_option_today">Only Today</string>
@@ -1317,7 +1317,7 @@
 	<string name="error_server_message"> There was an error on the server, please try again later</string>
 	<string name="error_system_message"> An unknown error occurred</string>
 	<string name="restore">Restore</string>
-	<string name="sign_message_gdpr">To continue you must accept our Terms of Use and Privacy Policy. Please read them carefully.</string>
+	<string name="sign_message_gdpr">Chose your authentication method after reading and accepting our Terms of Use and Privacy Policy</string>
 	<string name="sign_agree_pp_gdpr">I agree to the &lt;a href="%s">Privacy Policy&lt;/a></string>
 	<string name="sign_agree_tof_gdpr">I agree to the &lt;a href="%s">Terms of Use&lt;/a></string>
 	<string name="sign_agree_news_gdpr">I agree to receive the latest news about fonnek products</string>
@@ -2741,4 +2741,11 @@
 	<string name="brand.yoshinoya">Yoshinoya</string>
 	<string name="brand.yudetaro">Yudetaro</string>
 	<string name="brand.yumean">Yumean</string>
+    <string name="id_name">Your name:</string>
+    <string name="id_tel">Your phone number</string>
+    <string name="id_and">and</string>
+    <string name="get_code" >Activate</string>
+    <string name="sign_message_gdpr_only_priv">To continue you must accept our Privacy Policy. Please read it carefully.</string>
+    <string name="sign_message_code">Please, enter the activation code we have sent you by sms:</string>
+	<string name="onboarding_setting_message">Tap \"Continue\" when ready...</string>
 </resources>

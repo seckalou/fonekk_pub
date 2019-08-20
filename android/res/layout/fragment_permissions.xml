@@ -4,11 +4,13 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
+
   <include
-    layout="@layout/info_page"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_above="@+id/btn_frame"/>
+      layout="@layout/info_page"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_above="@+id/btn_frame"
+      android:layout_marginBottom="-3dp" />
   <RelativeLayout
     android:id="@id/btn_frame"
     android:orientation="horizontal"

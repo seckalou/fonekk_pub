@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_height="wrap_content"
+  android:layout_width="match_parent">
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_base_plus">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/sign_message_code"
+        android:textAppearance="@style/MwmTextAppearance.Body3.Primary"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/txt_tel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textView1"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edit_text_shape_selector"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:textAppearance="@style/TextAppearance.Medium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/margin_direction_big"
+        android:gravity="center"
+        android:text="@string/id_name"
+        android:textAppearance="@style/MwmTextAppearance.Body3.Primary"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/edit_text_shape_selector"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.Medium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/btn_id_accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_double"
+        android:background="?accentButtonBackground"
+        android:foreground="?clickableBackground"
+        android:gravity="center"
+        android:minHeight="@dimen/primary_button_min_height"
+        android:text="@string/get_code"
+        android:textAppearance="@style/MwmTextAppearance.Button"
+        android:textColor="?accentButtonTextColor" />
+  </LinearLayout>
+</ScrollView>

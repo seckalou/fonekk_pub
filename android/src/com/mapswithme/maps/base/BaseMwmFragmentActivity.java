@@ -29,8 +29,11 @@ import com.mapswithme.util.log.LoggerFactory;
 public abstract class BaseMwmFragmentActivity extends AppCompatActivity
                                   implements BaseActivity
 {
+  public static final String EXTRA_CORE_NEEDED = "core_needed";
+
   private final BaseActivityDelegate mBaseDelegate = new BaseActivityDelegate(this);
   private boolean mSafeCreated;
+  private boolean mNeedCore = true;
 
   @Override
   @NonNull
@@ -70,7 +73,13 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
     if (initialIntent != null)
       setIntent(initialIntent);
 
-    if (!MwmApplication.get().arePlatformAndCoreInitialized()
+    initialIntent = getIntent();
+    if (initialIntent != null && initialIntent.hasExtra(EXTRA_CORE_NEEDED))
+    {
+      mNeedCore = initialIntent.getBooleanExtra(EXTRA_CORE_NEEDED, true);
+    }
+
+    if ((mNeedCore && !MwmApplication.get().arePlatformAndCoreInitialized())
         || !PermissionsUtils.isExternalStorageGranted())
     {
       super.onCreate(savedInstanceState);
@@ -350,5 +359,9 @@ public abstract class BaseMwmFragmentActivity extends AppCompatActivity
   {
     SplashActivity.start(this, getClass(), initialIntent);
     finish();
+  }
+
+  public boolean isCoreNeeded(){
+      return mNeedCore;
   }
 }

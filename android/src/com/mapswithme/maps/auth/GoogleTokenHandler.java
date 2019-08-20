@@ -29,7 +29,7 @@ class GoogleTokenHandler implements TokenHandler
     {
       GoogleSignInAccount account = task.getResult(ApiException.class);
       if (account != null)
-        mToken = account.getIdToken();
+        mToken = account.getEmail(); // account.getIdToken();
       return !TextUtils.isEmpty(mToken);
     }
     catch (ApiException e)

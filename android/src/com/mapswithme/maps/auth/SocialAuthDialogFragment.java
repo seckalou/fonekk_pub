@@ -103,7 +103,7 @@ public class SocialAuthDialogFragment extends BaseMwmDialogFragment
     super.onCreate(savedInstanceState);
     setTargetCallback();
     GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(PrivateVariables.googleWebClientId())
+//        .requestIdToken(PrivateVariables.googleWebClientId())
         .requestEmail()
         .build();
     mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
@@ -132,7 +132,7 @@ public class SocialAuthDialogFragment extends BaseMwmDialogFragment
     setLoginButton(view, R.id.facebook_button, mFacebookClickListener);
     setLoginButton(view, R.id.phone_button, mPhoneClickListener);
 
-    mPromoCheck = view.findViewById(R.id.newsCheck);
+//    mPromoCheck = view.findViewById(R.id.newsCheck);
     mPrivacyPolicyCheck = view.findViewById(R.id.privacyPolicyCheck);
     mPrivacyPolicyCheck.setOnCheckedChangeListener((buttonView, isChecked) -> {
       setButtonAvailability(view, isChecked && mTermOfUseCheck.isChecked(),

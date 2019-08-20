@@ -1,19 +1,32 @@
 package com.mapswithme.maps.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.mapswithme.util.Utils;
 
 public class BaseMwmFragment extends Fragment implements OnBackPressListener
 {
+  private boolean mNeedCore = true;
+
   @Override
   public void onAttach(Context context)
   {
     super.onAttach(context);
-    Utils.detachFragmentIfCoreNotInitialized(context, this);
+    FragmentActivity a = this.getActivity();
+
+    if(a instanceof  BaseMwmFragmentActivity){
+      mNeedCore = ((BaseMwmFragmentActivity) a).isCoreNeeded();
+    }
+
+    if(mNeedCore){
+      Utils.detachFragmentIfCoreNotInitialized(context, this);
+    }
+
   }
 
   @Override
