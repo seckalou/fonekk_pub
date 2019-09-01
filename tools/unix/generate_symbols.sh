@@ -7,7 +7,8 @@ export PYTHONDONTWRITEBYTECODE=1
 OMIM_PATH="${OMIM_PATH:-$(cd "$(dirname "$0")/../.."; pwd)}"
 OUT_PATH="$OMIM_PATH/out/release"
 SKIN_GENERATOR="$OUT_PATH/skin_generator_tool"
-DATA_PATH="$OMIM_PATH/data"
+DATA_PATH="$OMIM_PATH/fonekk_priv/data"
+DATA_OUT_PATH="$OMIM_PATH/data"
 LOCAL_ADS_SYMBOLS_GENERATOR="$OMIM_PATH/tools/python/generate_local_ads_symbols.py"
 
 # If skin_generator does not exist then build it
@@ -52,7 +53,7 @@ function BuildSkin() {
   ln -s "$STYLE_PATH/$resourceName$symbolsSuffix" "$PNG_PATH"
   # Run skin generator
   "$SKIN_GENERATOR" --symbolWidth $symbolSize --symbolHeight $symbolSize --symbolsDir "$STYLE_PATH/$symbolsFolder" \
-      --skinName "$DATA_PATH/resources-$resourceName$suffix/basic" --skinSuffix="$symbolsSuffix"
+      --skinName "$DATA_OUT_PATH/resources-$resourceName$suffix/basic" --skinSuffix="$symbolsSuffix"
   # Reset environment
   rm -r "$PNG_PATH" || true
 }
@@ -61,8 +62,8 @@ function BuildSkin() {
 cleanup=(resources-{{6plus,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}{_dark,_clear}})
 for item in ${cleanup[*]}
 do
-  rm -rf "$DATA_PATH/$item" || true
-  mkdir "$DATA_PATH/$item"
+  rm -rf "$DATA_OUT_PATH/$item" || true
+  mkdir "$DATA_OUT_PATH/$item"
 done
 
 # Build styles
@@ -103,4 +104,4 @@ for i in mdpi hdpi xhdpi xxhdpi xxxhdpi 6plus; do
 done
 
 echo "Generate local ads symbols"
-python "$LOCAL_ADS_SYMBOLS_GENERATOR" "$DATA_PATH/styles" "$DATA_PATH"
+python "$LOCAL_ADS_SYMBOLS_GENERATOR" "$DATA_PATH/styles" "$DATA_OUT_PATH"
