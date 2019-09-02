@@ -110,7 +110,7 @@ public abstract class BaseMenu
   public void onResume(@Nullable Runnable procAfterMeasurement)
   {
     measureContent(procAfterMeasurement);
-    updateMarker();
+//    updateMarker();
   }
 
   BaseMenu(@NonNull View frame, @NonNull ItemClickListener<? extends Item> itemClickListener)

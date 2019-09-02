@@ -328,6 +328,7 @@ public class MainMenu extends BaseMenu
 
     adjustCollapsedItems();
     setState(State.MENU, false, false);
+
   }
 
   public MainMenu(View frame, ItemClickListener<Item> itemClickListener)
@@ -343,10 +344,14 @@ public class MainMenu extends BaseMenu
     mToggle = new MenuToggle(mLineFrame, getHeightResId());
     mapItem(Item.MENU, mLineFrame);
 
+
     mNewsMarker = mButtonsFrame.findViewById(R.id.marker);
     mNewsCounter = (TextView) mContentFrame.findViewById(R.id.counter);
 
     init();
+
+    mToggle.hide();
+
   }
 
   @Override
@@ -359,8 +364,8 @@ public class MainMenu extends BaseMenu
   {
     if (state != State.NAVIGATION)
     {
-      mToggle.show(state.showToggle());
-      mToggle.setCollapsed(mCollapsed, animateToggle);
+//      mToggle.show(state.showToggle());
+//      mToggle.setCollapsed(mCollapsed, animateToggle);
 
       boolean expandContent;
       boolean isRouting = state == State.ROUTE_PREPARE;

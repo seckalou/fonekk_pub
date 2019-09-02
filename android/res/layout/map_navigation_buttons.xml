@@ -17,14 +17,14 @@
     tools:src="@drawable/anim_traffic_loading"/>
 
   <ImageButton
-    android:id="@+id/subway"
-    style="@style/MwmWidget.MapButton.Traffic"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
-    android:visibility="invisible"
-    android:background="?attr/nav_bg_subway"
-    tools:src="@drawable/anim_traffic_loading"/>
+      android:id="@+id/subway"
+      style="@style/MwmWidget.MapButton.Traffic"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentTop="true"
+      android:background="@drawable/invite_button"/>
 
   <ImageButton
     android:id="@+id/my_position"
