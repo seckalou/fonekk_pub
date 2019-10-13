@@ -256,7 +256,7 @@
 	<!-- Share one specific bookmark using SMS, %1$@ contains ge0:// and %2$@ http://ge0.me link. @NOTE non-ascii symbols in the link will make 70 bytes sms instead of 140 -->
 	<string name="bookmark_share_sms">Hé, regarde mon épingle sur fonnek ! %1$s ou %2$s. Les cartes hors ligne ne sont pas installées ? Les télécharger ici : http://fonnek/get</string>
 	<!-- Share my position using SMS, %1$@ contains ge0:// and %2$@ http://ge0.me link WITHOUT NAME. @NOTE non-ascii symbols in the link will make 70 bytes sms instead of 140 -->
-	<string name="my_position_share_sms">Hé, regarde ma position actuelle sur fonnek ! %1$s ou %2$s. Les cartes hors ligne ne sont pas installées ? Les télécharger ici : http://fonnek/get</string>
+	<string name="my_position_share_sms">Hé, voici ma position actuelle sur Fonnek ! %1$s. %2$s</string>
 	<!-- Subject for emailed bookmark -->
 	<string name="bookmark_share_email_subject">Hé, regarde mon épingle sur la carte fonnek !</string>
 	<!-- Share one specific bookmark using EMail, %1$@ is bookmark's name, %2$@ is ge0:// link and %3$@ http://ge0.me -->
@@ -2156,4 +2156,7 @@
     <string name="sign_message_gdpr_only_priv">Pour continuer, vous devez accepter notre politique de confidentialité. Veuillez le lire attentivement.</string>
     <string name="sign_message_code">Entrez le code d\'activation que nous vous avons envoyé par sms:</string>
     <string name="onboarding_setting_message">Appuyez sur \"Continuer\"...</string>
+    <string name="action_cancel">Annuler</string>
+	<string name="your_name">Entrez votre nom</string>
+    <string name="name_err_msg">Vous devez entrer un nom.</string>
 </resources>

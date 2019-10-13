@@ -16,6 +16,7 @@ import static com.mapswithme.util.Counters.KEY_MISC_NEWS_LAST_VERSION;
 
 public final class Config
 {
+  private static final String KEY_USER_NAME = "UserName"; // TODO - Temporary - until proper implementation of authorization
   private static final String KEY_APP_STORAGE = "StoragePath";
 
   private static final String KEY_TTS_ENABLED = "TtsEnabled";
@@ -118,6 +119,9 @@ public final class Config
                   .putInt(KEY_LIKES_LAST_RATED_SESSION, getInt(KEY_LIKES_LAST_RATED_SESSION))
                   .apply();
   }
+
+  public static String getUserName(){ return  getString(KEY_USER_NAME); }
+  public static void setUserName(String name) { setString(KEY_USER_NAME, name); }
 
   public static String getStoragePath()
   {

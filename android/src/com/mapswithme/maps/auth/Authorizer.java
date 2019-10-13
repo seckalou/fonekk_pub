@@ -8,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 
+
 import com.mapswithme.maps.Framework;
 
 /**
@@ -133,7 +134,8 @@ public class Authorizer implements AuthorizationListener
 
   public static boolean isAuthorized()
   {
-    return false; //Framework.nativeIsUserAuthenticated();
+    // TODO - fix mutex issue in nativeIsUserAuthenticated and uncomment to activate authorization
+    return true; // Framework.nativeIsUserAuthenticated();
   }
 
   public interface Callback

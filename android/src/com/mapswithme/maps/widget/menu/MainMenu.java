@@ -122,6 +122,16 @@ public class MainMenu extends BaseMenu
 
   public enum Item implements BaseMenu.Item
   {
+    MAIN_BUTTON(R.id.main_button)
+        {
+          @NonNull
+          @Override
+          public ClickMenuDelegate createClickDelegate(@NonNull MwmActivity activity,
+                                                               @NonNull Item item)
+          {
+            return new MwmActivity.ShareMyLocationDelegate(activity, item);
+          }
+        },
     MENU(R.id.toggle)
         {
           @NonNull
@@ -316,6 +326,7 @@ public class MainMenu extends BaseMenu
 
   private void init()
   {
+    mapItem(Item.MAIN_BUTTON);
     mapItem(Item.ADD_PLACE);
     mapItem(Item.DOWNLOAD_GUIDES);
     mapItem(Item.SEARCH);

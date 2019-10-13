@@ -17,6 +17,7 @@ import com.mapswithme.util.statistics.Statistics;
 public abstract class ShareOption
 {
   public static final AnyShareOption ANY = new AnyShareOption();
+  public static final SmsShareOption SMS = new SmsShareOption();
 
   @StringRes
   protected final int mNameResId;
@@ -83,7 +84,14 @@ public abstract class ShareOption
 
     public void share(Activity activity, String body)
     {
-      SharingHelper.shareOutside(new TextShareable(activity, body));
+      TextShareable data = new TextShareable(activity, body);
+      Intent it = data.getTargetIntent(null);
+
+      it.putExtra(Intent.EXTRA_TEXT, body);
+      Intent shareIntent = Intent.createChooser(it, null);
+      activity.startActivity(shareIntent);
+
+//      SharingHelper.shareOutside(new TextShareable(activity, body));
     }
 
     public void share(Activity activity, String body, @StringRes int titleRes)

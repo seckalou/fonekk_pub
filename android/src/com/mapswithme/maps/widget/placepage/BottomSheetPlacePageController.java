@@ -289,9 +289,9 @@ public class BottomSheetPlacePageController implements PlacePageController, Loca
         return;
       }
 
-//      UiUtils.show(mButtonsLayout);
-//      openPlacePage();
-//      showBanner(object, policy);
+      UiUtils.show(mButtonsLayout);
+      openPlacePage();
+      showBanner(object, policy);
     });
 
     mToolbar.setTitle(object.getTitle());

@@ -260,7 +260,7 @@ public class SplashActivity extends AppCompatActivity
 
   private void processPermissionGranting()
   {
-    mAuthorized = true; //To change when authorization is finished implemented
+
     mPermissionsGranted = PermissionsDialogFragment.isPermissionGranted();
     DialogFragment storagePermissionsDialog = StoragePermissionsDialogFragment.find(this);
     DialogFragment permissionsDialog = PermissionsDialogFragment.find(this);
@@ -280,6 +280,8 @@ public class SplashActivity extends AppCompatActivity
 
       return;
     }
+
+    mAuthorized = PermissionsDialogFragment.isAuthorizationGranted();
 
     if(!mAuthorized)
     {

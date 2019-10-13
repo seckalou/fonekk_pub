@@ -19,11 +19,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mapswithme.maps.Framework.MapObjectListener;
@@ -37,11 +39,14 @@ import com.mapswithme.maps.base.BaseMwmFragmentActivity;
 import com.mapswithme.maps.base.OnBackPressListener;
 import com.mapswithme.maps.bookmarks.BookmarkCategoriesActivity;
 import com.mapswithme.maps.bookmarks.BookmarksCatalogActivity;
+import com.mapswithme.maps.bookmarks.TargetPositionListener;
 import com.mapswithme.maps.bookmarks.data.BookmarkCategory;
 import com.mapswithme.maps.bookmarks.data.BookmarkManager;
 import com.mapswithme.maps.bookmarks.data.CatalogCustomProperty;
 import com.mapswithme.maps.bookmarks.data.CatalogTagsGroup;
 import com.mapswithme.maps.bookmarks.data.MapObject;
+import com.mapswithme.maps.bookmarks.data.TargetPosition;
+import com.mapswithme.maps.bookmarks.data.TargetPositionManager;
 import com.mapswithme.maps.dialog.AlertDialogCallback;
 import com.mapswithme.maps.dialog.DialogUtils;
 import com.mapswithme.maps.dialog.DrivingOptionsDialogFactory;
@@ -128,6 +133,10 @@ import com.mapswithme.util.sharing.TargetUtils;
 import com.mapswithme.util.statistics.AlohaHelper;
 import com.mapswithme.util.statistics.Statistics;
 
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import com.mapswithme.util.Config;
+
 import java.util.List;
 import java.util.Stack;
 
@@ -153,7 +162,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
                                  AdsRemovalPurchaseControllerProvider,
                                  AdsRemovalActivationCallback,
                                  PlacePageController.SlideListener,
-                                 AlertDialogCallback, RoutingModeListener
+                                 AlertDialogCallback, RoutingModeListener, TargetPositionListener
 {
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
   private static final String TAG = MwmActivity.class.getSimpleName();
@@ -241,6 +250,11 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @SuppressWarnings("NullableProblems")
   @NonNull
   private PlacePageController mPlacePageController;
+
+  @Override
+  public void onNewTargetPositionAvailable(TargetPosition pos) {
+
+  }
 
   public interface LeftAnimationTrackListener
   {
@@ -419,13 +433,60 @@ public class MwmActivity extends BaseMwmFragmentActivity
       EditorActivity.start(this);
   }
 
+  private String mUserName = "";
+
+  private void getUserName()
+  {
+    if(!mUserName.isEmpty()){
+      shareMyLocation();
+      return;
+    }
+
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(R.string.your_name);
+    final EditText input = new EditText(builder.getContext());
+    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT);
+    input.setLayoutParams(lp);
+    builder.setView(input);
+    builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int id) {
+        mUserName = input.getText().toString();
+
+        if(mUserName.isEmpty()) {
+
+          Toast toast = Toast.makeText(MwmActivity.this,
+                  R.string.name_err_msg, Toast.LENGTH_LONG);
+          toast.setGravity(Gravity.CENTER, 0, 0);
+          toast.show();
+
+          return;
+        }
+
+        Config.setUserName(mUserName);
+
+        shareMyLocation();
+      }
+    });
+    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int id) {
+        // User cancelled the dialog
+      }
+    });
+    AlertDialog dialog = builder.create();
+    dialog.show();
+
+  }
+
   private void shareMyLocation()
   {
     final Location loc = LocationHelper.INSTANCE.getSavedLocation();
     if (loc != null)
     {
-      final String geoUrl = Framework.nativeGetGe0Url(loc.getLatitude(), loc.getLongitude(), Framework.nativeGetDrawScale(), "");
-      final String httpUrl = Framework.getHttpGe0Url(loc.getLatitude(), loc.getLongitude(), Framework.nativeGetDrawScale(), "");
+      final String geoUrl = ""; // No geo protocol for now //Framework.nativeGetGe0Url(loc.getLatitude(), loc.getLongitude(), Framework.nativeGetDrawScale(), "");
+      final String httpUrl = Framework.getHttpGe0Url(loc.getLatitude(), loc.getLongitude(), Framework.nativeGetDrawScale(), mUserName.replace(" ", "_"));
       final String body = getString(R.string.my_position_share_sms, geoUrl, httpUrl);
       ShareOption.ANY.share(this, body);
       return;
@@ -1262,6 +1323,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (MapFragment.nativeIsEngineCreated())
       LocationHelper.INSTANCE.attach(this);
     mPlacePageController.onActivityStarted(this);
+
+    TargetPositionManager.INSTANCE.addTargetPositionListener(this);
   }
 
   @Override
@@ -2467,7 +2530,8 @@ public class MwmActivity extends BaseMwmFragmentActivity
     public void onMenuItemClickInternal()
     {
       Statistics.INSTANCE.trackToolbarMenu(getItem());
-      getActivity().closeMenu(getActivity()::shareMyLocation);
+//      getActivity().closeMenu(getActivity()::shareMyLocation);
+      getActivity().closeMenu(getActivity()::getUserName);
     }
   }
 
