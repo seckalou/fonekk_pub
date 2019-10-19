@@ -17,7 +17,7 @@
     tools:src="@drawable/anim_traffic_loading"/>
 
   <ImageButton
-      android:id="@+id/subway"
+      android:id="@+id/invite"
       style="@style/MwmWidget.MapButton.Traffic"
       android:layout_width="48dp"
       android:layout_height="48dp"

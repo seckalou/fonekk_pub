@@ -2159,4 +2159,5 @@
     <string name="action_cancel">Annuler</string>
 	<string name="your_name">Entrez votre nom</string>
     <string name="name_err_msg">Vous devez entrer un nom.</string>
+	<string name="invite_sms">%1$s vous invite a partager votre location sur Fonnek. Cliquer sur le lien pour partager %2$s</string>
 </resources>

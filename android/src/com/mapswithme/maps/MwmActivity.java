@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mapswithme.maps.Framework.MapObjectListener;
@@ -117,6 +116,7 @@ import com.mapswithme.maps.widget.menu.MyPositionButton;
 import com.mapswithme.maps.widget.placepage.BottomSheetPlacePageController;
 import com.mapswithme.maps.widget.placepage.PlacePageController;
 import com.mapswithme.maps.widget.placepage.RoutingModeListener;
+import com.mapswithme.util.Constants;
 import com.mapswithme.util.Counters;
 import com.mapswithme.util.InputUtils;
 import com.mapswithme.util.PermissionsUtils;
@@ -435,7 +435,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private String mUserName = "";
 
-  private void getUserName()
+  private void getUserNameIfNecessaryAndShareLocation()
   {
     if(!mUserName.isEmpty()){
       shareMyLocation();
@@ -480,6 +480,51 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   }
 
+  private void getUserNameIfNecessaryAndInvite()
+  {
+    if(!mUserName.isEmpty()){
+      invite();
+      return;
+    }
+
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle(R.string.your_name);
+    final EditText input = new EditText(builder.getContext());
+    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT);
+    input.setLayoutParams(lp);
+    builder.setView(input);
+    builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int id) {
+        mUserName = input.getText().toString();
+
+        if(mUserName.isEmpty()) {
+
+          Toast toast = Toast.makeText(MwmActivity.this,
+                  R.string.name_err_msg, Toast.LENGTH_LONG);
+          toast.setGravity(Gravity.CENTER, 0, 0);
+          toast.show();
+
+          return;
+        }
+
+        Config.setUserName(mUserName);
+
+        invite();
+      }
+    });
+    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int id) {
+        // User cancelled the dialog
+      }
+    });
+    AlertDialog dialog = builder.create();
+    dialog.show();
+
+  }
+
   private void shareMyLocation()
   {
     final Location loc = LocationHelper.INSTANCE.getSavedLocation();
@@ -497,6 +542,13 @@ public class MwmActivity extends BaseMwmFragmentActivity
         .setCancelable(true)
         .setPositiveButton(android.R.string.ok, null)
         .show();
+  }
+
+  private void invite()
+  {
+    final String httpUrl = Constants.Url.HTTP_GE0_PREFIX;
+    final String body = getString(R.string.invite_sms, this.mUserName , httpUrl);
+    ShareOption.ANY.share(this, body);
   }
 
   @Override
@@ -753,16 +805,29 @@ public class MwmActivity extends BaseMwmFragmentActivity
     View myPosition = frame.findViewById(R.id.my_position);
     mNavMyPosition = new MyPositionButton(myPosition, mOnMyPositionClickListener);
 
-    initToggleMapLayerController(frame);
+//    initToggleMapLayerController(frame);
+    initToggleInvite(frame);
+
     mNavAnimationController = new NavigationButtonsAnimationController(
         zoomIn, zoomOut, myPosition, getWindow().getDecorView().getRootView(), this);
+  }
+
+  private void initToggleInvite(@NonNull View frame)
+  {
+      View invite = frame.findViewById(R.id.invite);
+      invite.setOnClickListener(new OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              MwmActivity.this.getUserNameIfNecessaryAndInvite();
+          }
+      });
   }
 
   private void initToggleMapLayerController(@NonNull View frame)
   {
     ImageButton trafficBtn = frame.findViewById(R.id.traffic);
     TrafficButton traffic = new TrafficButton(trafficBtn);
-    View subway = frame.findViewById(R.id.subway);
+    View subway = frame.findViewById(R.id.invite);
     mToggleMapLayerController = new MapLayerCompositeController(traffic, subway, this);
     mToggleMapLayerController.attachCore();
   }
@@ -2531,7 +2596,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     {
       Statistics.INSTANCE.trackToolbarMenu(getItem());
 //      getActivity().closeMenu(getActivity()::shareMyLocation);
-      getActivity().closeMenu(getActivity()::getUserName);
+      getActivity().closeMenu(getActivity()::getUserNameIfNecessaryAndShareLocation);
     }
   }
 

@@ -65,7 +65,7 @@ public enum TipsApi
 
   MAP_LAYERS(R.string.tips_map_layers_title,
              R.string.tips_map_layers_message,
-             R.id.subway, null, MwmActivity.class)
+             R.id.invite, null, MwmActivity.class)
       {
 
         @NonNull
