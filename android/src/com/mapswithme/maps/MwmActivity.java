@@ -805,7 +805,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     View myPosition = frame.findViewById(R.id.my_position);
     mNavMyPosition = new MyPositionButton(myPosition, mOnMyPositionClickListener);
 
-//    initToggleMapLayerController(frame);
+    initToggleMapLayerController(frame);
     initToggleInvite(frame);
 
     mNavAnimationController = new NavigationButtonsAnimationController(
