@@ -244,7 +244,7 @@ public class BottomSheetPlacePageController implements PlacePageController, Loca
     mPlacePage = mActivity.findViewById(R.id.placepage);
     mPlacePageBehavior = AnchorBottomSheetBehavior.from(mPlacePage);
     mPlacePageBehavior.addBottomSheetCallback(mSheetCallback);
-    mPlacePage.setOnTouchListener((v, event) -> mGestureDetector.onTouchEvent(event));
+//    mPlacePage.setOnTouchListener((v, event) -> mGestureDetector.onTouchEvent(event));
     mPlacePage.addOnLayoutChangeListener(this);
     mPlacePage.addClosable(this);
     mPlacePage.setRoutingModeListener(mRoutingModeListener);

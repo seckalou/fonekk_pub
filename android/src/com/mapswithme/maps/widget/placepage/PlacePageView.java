@@ -472,6 +472,10 @@ public class PlacePageView extends NestedScrollView
     Sponsored.setInfoListener(this);
 
     initPlaceDescriptionView();
+
+    setScrollable(false);
+    mPreview.setVerticalScrollBarEnabled(false);
+
   }
 
   public void initButtons(@NonNull ViewGroup buttons, @NonNull PlacePageButtonsListener listener)
@@ -1258,7 +1262,7 @@ public class PlacePageView extends NestedScrollView
     UiUtils.setTextAndHideIfEmpty(mTvTitle, mapObject.getTitle());
     UiUtils.setTextAndHideIfEmpty(mTvSecondaryTitle, mapObject.getSecondaryTitle());
     boolean isPopular = mapObject.getPopularity().getType() == Popularity.Type.POPULAR;
-    UiUtils.showIf(isPopular, mPopularityView);
+//    UiUtils.showIf(isPopular, mPopularityView);
     if (mToolbar != null)
       mToolbar.setTitle(mapObject.getTitle());
     UiUtils.setTextAndHideIfEmpty(mTvSubtitle, mapObject.getSubtitle());
@@ -1729,7 +1733,127 @@ public class PlacePageView extends NestedScrollView
 
   @Override
   public void onClick(View v)
+  {switch (v.getId())
   {
+    case R.id.ll__place_editor:
+      getActivity().showEditor();
+      break;
+    case R.id.ll__add_organisation:
+      addOrganisation();
+      break;
+    case R.id.ll__place_add:
+      addPlace();
+      break;
+    case R.id.ll__local_ad:
+      if (mMapObject != null)
+      {
+        LocalAdInfo localAdInfo = mMapObject.getLocalAdInfo();
+        if (localAdInfo == null)
+          throw new AssertionError("A local ad must be non-null if button is shown!");
+
+        if (!TextUtils.isEmpty(localAdInfo.getUrl()))
+        {
+          Statistics.INSTANCE.trackPPOwnershipButtonClick(mMapObject);
+          Utils.openUrl(getContext(), localAdInfo.getUrl());
+        }
+      }
+      break;
+    case R.id.ll__more:
+      onSponsoredClick(false /* book */, true /* isMoreDetails */);
+      break;
+    case R.id.tv__place_hotel_more_on_web:
+      onSponsoredClick(false /* book */, false /* isMoreDetails */);
+      break;
+    case R.id.ll__place_latlon:
+      mIsLatLonDms = !mIsLatLonDms;
+      MwmApplication.prefs().edit().putBoolean(PREF_USE_DMS, mIsLatLonDms).apply();
+      if (mMapObject == null)
+      {
+        LOGGER.e(TAG, "A LatLon cannot be refreshed, mMapObject is null");
+        break;
+      }
+      refreshLatLon(mMapObject);
+      break;
+    case R.id.ll__place_phone:
+      Utils.callPhone(getContext(), mTvPhone.getText().toString());
+      if (mMapObject != null)
+        Framework.logLocalAdsEvent(Framework.LocalAdsEventType.LOCAL_ADS_EVENT_CLICKED_PHONE, mMapObject);
+      break;
+    case R.id.ll__place_website:
+      Utils.openUrl(getContext(), mTvWebsite.getText().toString());
+      if (mMapObject != null)
+        Framework.logLocalAdsEvent(Framework.LocalAdsEventType.LOCAL_ADS_EVENT_CLICKED_WEBSITE, mMapObject);
+      break;
+    case R.id.ll__place_wiki:
+      // TODO: Refactor and use separate getters for Wiki and all other PP meta info too.
+      if (mMapObject == null)
+      {
+        LOGGER.e(TAG, "Cannot follow url, mMapObject is null!");
+        break;
+      }
+      Utils.openUrl(getContext(), mMapObject.getMetadata(Metadata.MetadataType.FMD_WIKIPEDIA));
+      break;
+    case R.id.direction_frame:
+      Statistics.INSTANCE.trackEvent(Statistics.EventName.PP_DIRECTION_ARROW);
+      AlohaHelper.logClick(AlohaHelper.PP_DIRECTION_ARROW);
+      showBigDirection();
+      break;
+    case R.id.ll__place_email:
+      Utils.sendTo(getContext(), mTvEmail.getText().toString());
+      break;
+    case R.id.tv__place_hotel_more:
+      UiUtils.hide(mHotelMoreDescription);
+      mTvHotelDescription.setMaxLines(Integer.MAX_VALUE);
+      break;
+    case R.id.tv__place_hotel_facilities_more:
+      if (mSponsored != null && mMapObject != null)
+        Statistics.INSTANCE.trackHotelEvent(PP_HOTEL_FACILITIES, mSponsored, mMapObject);
+      UiUtils.hide(mHotelMoreFacilities);
+      mFacilitiesAdapter.setShowAll(true);
+      break;
+    case R.id.tv__place_hotel_reviews_more:
+      if (isSponsored())
+      {
+        //null checking is done in 'isSponsored' method
+        //noinspection ConstantConditions
+        Utils.openUrl(getContext(), mSponsored.getReviewUrl());
+        if (mMapObject != null)
+          Statistics.INSTANCE.trackHotelEvent(PP_HOTEL_REVIEWS_LAND, mSponsored, mMapObject);
+      }
+      break;
+    case R.id.tv__place_page_order_taxi:
+      RoutingController.get().prepare(LocationHelper.INSTANCE.getMyPosition(), mMapObject,
+              Framework.ROUTER_TYPE_TAXI);
+      close();
+      if (mMapObject != null)
+      {
+        List<TaxiType> types = mMapObject.getReachableByTaxiTypes();
+        if (types != null && !types.isEmpty())
+        {
+          String providerName = types.get(0).getProviderName();
+          Statistics.INSTANCE.trackTaxiEvent(Statistics.EventName.ROUTING_TAXI_CLICK_IN_PP,
+                  providerName);
+        }
+      }
+      break;
+    case R.id.search_hotels_btn:
+      if (mMapObject == null)
+        break;
+
+      @FilterUtils.RatingDef
+      int filterRating = mSponsored != null ? Framework.getFilterRating(mSponsored.getRating())
+              : FilterUtils.RATING_ANY;
+      HotelsFilter filter = FilterUtils.createHotelFilter(filterRating,
+              mMapObject.getPriceRate(),
+              mMapObject.getHotelType());
+      getActivity().onSearchSimilarHotels(filter);
+      String provider = mSponsored != null && mSponsored.getType() == Sponsored.TYPE_BOOKING
+              ? Statistics.ParamValue.BOOKING_COM : Statistics.ParamValue.OSM;
+      Statistics.INSTANCE.trackEvent(Statistics.EventName.PP_HOTEL_SEARCH_SIMILAR,
+              Statistics.params().add(Statistics.EventParam.PROVIDER,
+                      provider));
+      break;
+  }
     switch (v.getId())
     {
       case R.id.ll__place_editor:

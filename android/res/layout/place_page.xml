@@ -18,6 +18,7 @@
       layout="@layout/place_page_details"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="?panel"/>
+      android:background="?panel"
+        android:visibility="invisible"/>
   </LinearLayout>
 </merge>
