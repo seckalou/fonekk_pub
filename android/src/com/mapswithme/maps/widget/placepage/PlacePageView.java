@@ -476,6 +476,10 @@ public class PlacePageView extends NestedScrollView
     setScrollable(false);
     mPreview.setVerticalScrollBarEnabled(false);
 
+    mHotelDiscount.setVisibility(INVISIBLE);
+    mTvSponsoredPrice.setVisibility(INVISIBLE);
+    mRatingView.setVisibility(INVISIBLE);
+
   }
 
   public void initButtons(@NonNull ViewGroup buttons, @NonNull PlacePageButtonsListener listener)
@@ -1271,7 +1275,7 @@ public class PlacePageView extends NestedScrollView
     UiUtils.setTextAndHideIfEmpty(mTvAddress, mapObject.getAddress());
     boolean sponsored = isSponsored();
     UiUtils.showIf(sponsored || mapObject.shouldShowUGC(), mPreviewRatingInfo);
-    UiUtils.showIf(sponsored, mHotelDiscount);
+//    UiUtils.showIf(sponsored, mHotelDiscount);
     UiUtils.showIf(mapObject.getHotelType() != null, mPreview, R.id.search_hotels_btn);
     if (sponsored)
       refreshSponsoredViews(mapObject, priceInfo);
@@ -1283,16 +1287,16 @@ public class PlacePageView extends NestedScrollView
     @SuppressWarnings("ConstantConditions")
     boolean isRatingEmpty = TextUtils.isEmpty(mSponsored.getRating());
     Impress impress = Impress.values()[mSponsored.getImpress()];
-    mRatingView.setRating(impress, mSponsored.getRating());
-    UiUtils.showIf(!isRatingEmpty, mRatingView);
+//    mRatingView.setRating(impress, mSponsored.getRating());
+//    UiUtils.showIf(!isRatingEmpty, mRatingView);
     mTvSponsoredPrice.setText(mSponsoredPrice);
-    UiUtils.showIf(!isPriceEmpty, mTvSponsoredPrice);
+//    UiUtils.showIf(!isPriceEmpty, mTvSponsoredPrice);
     boolean isBookingInfoExist = (!isRatingEmpty || !isPriceEmpty) &&
                                  mSponsored.getType() == Sponsored.TYPE_BOOKING;
     UiUtils.showIf(isBookingInfoExist || mapObject.shouldShowUGC(), mPreviewRatingInfo);
     String discount = getHotelDiscount(priceInfo);
-    UiUtils.hideIf(TextUtils.isEmpty(discount), mHotelDiscount);
-    mHotelDiscount.setRating(Impress.DISCOUNT, discount);
+//    UiUtils.hideIf(TextUtils.isEmpty(discount), mHotelDiscount);
+//    mHotelDiscount.setRating(Impress.DISCOUNT, discount);
   }
 
   @Nullable
