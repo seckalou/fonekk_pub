@@ -155,7 +155,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/MwmTextAppearance.PlacePage.Accent"
-      android:textSize="@dimen/text_size_body_3"
+      android:textSize="@dimen/text_size_title"
       tools:text="2000 km"/>
   </LinearLayout>
 

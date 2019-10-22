@@ -479,6 +479,7 @@ public class PlacePageView extends NestedScrollView
     mHotelDiscount.setVisibility(INVISIBLE);
     mTvSponsoredPrice.setVisibility(INVISIBLE);
     mRatingView.setVisibility(INVISIBLE);
+    mAvDirection.setVisibility(INVISIBLE);
 
   }
 
@@ -1271,7 +1272,7 @@ public class PlacePageView extends NestedScrollView
       mToolbar.setTitle(mapObject.getTitle());
     UiUtils.setTextAndHideIfEmpty(mTvSubtitle, mapObject.getSubtitle());
     colorizeSubtitle();
-    UiUtils.hide(mAvDirection);
+//    UiUtils.hide(mAvDirection);
     UiUtils.setTextAndHideIfEmpty(mTvAddress, mapObject.getAddress());
     boolean sponsored = isSponsored();
     UiUtils.showIf(sponsored || mapObject.shouldShowUGC(), mPreviewRatingInfo);
@@ -1716,7 +1717,7 @@ public class PlacePageView extends NestedScrollView
                                                                            northAzimuth).getAzimuth();
     if (azimuth >= 0)
     {
-      UiUtils.show(mAvDirection);
+//      UiUtils.show(mAvDirection);
       mAvDirection.setAzimuth(azimuth);
     }
   }
