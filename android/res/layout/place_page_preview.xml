@@ -201,6 +201,7 @@
     android:layout_marginEnd="@dimen/margin_base"
     android:layout_marginRight="@dimen/margin_base"
     android:text="@string/place_page_search_similar_hotel"
+      android:visibility="invisible"
     tools:text="@string/authorization_button_sign_in"/>
 
   <FrameLayout

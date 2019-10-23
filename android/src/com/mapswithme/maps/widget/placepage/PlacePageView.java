@@ -384,7 +384,7 @@ public class PlacePageView extends NestedScrollView
     directionFrame.setOnClickListener(this);
 
     mTvAddress = mPreview.findViewById(R.id.tv__address);
-    mPreview.findViewById(R.id.search_hotels_btn).setOnClickListener(this);
+//    mPreview.findViewById(R.id.search_hotels_btn).setOnClickListener(this);
 
     mPreviewRatingInfo = mPreview.findViewById(R.id.preview_rating_info);
     mRatingView = mPreviewRatingInfo.findViewById(R.id.rating_view);
@@ -900,6 +900,7 @@ public class PlacePageView extends NestedScrollView
       mHotelRatingBase.setText(text);
       TextView previewReviewCountView = mPreviewRatingInfo.findViewById(R.id.tv__review_count);
       previewReviewCountView.setText(text);
+      previewReviewCountView.setVisibility(INVISIBLE);
     }
   }
 
@@ -1275,9 +1276,9 @@ public class PlacePageView extends NestedScrollView
 //    UiUtils.hide(mAvDirection);
     UiUtils.setTextAndHideIfEmpty(mTvAddress, mapObject.getAddress());
     boolean sponsored = isSponsored();
-    UiUtils.showIf(sponsored || mapObject.shouldShowUGC(), mPreviewRatingInfo);
+//    UiUtils.showIf(sponsored || mapObject.shouldShowUGC(), mPreviewRatingInfo);
 //    UiUtils.showIf(sponsored, mHotelDiscount);
-    UiUtils.showIf(mapObject.getHotelType() != null, mPreview, R.id.search_hotels_btn);
+//    UiUtils.showIf(mapObject.getHotelType() != null, mPreview, R.id.search_hotels_btn);
     if (sponsored)
       refreshSponsoredViews(mapObject, priceInfo);
   }
@@ -1294,7 +1295,7 @@ public class PlacePageView extends NestedScrollView
 //    UiUtils.showIf(!isPriceEmpty, mTvSponsoredPrice);
     boolean isBookingInfoExist = (!isRatingEmpty || !isPriceEmpty) &&
                                  mSponsored.getType() == Sponsored.TYPE_BOOKING;
-    UiUtils.showIf(isBookingInfoExist || mapObject.shouldShowUGC(), mPreviewRatingInfo);
+//    UiUtils.showIf(isBookingInfoExist || mapObject.shouldShowUGC(), mPreviewRatingInfo);
     String discount = getHotelDiscount(priceInfo);
 //    UiUtils.hideIf(TextUtils.isEmpty(discount), mHotelDiscount);
 //    mHotelDiscount.setRating(Impress.DISCOUNT, discount);
