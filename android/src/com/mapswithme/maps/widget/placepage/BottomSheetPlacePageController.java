@@ -640,12 +640,12 @@ public class BottomSheetPlacePageController implements PlacePageController, Loca
     if (!isSet)
       return;
 
-    @AnchorBottomSheetBehavior.State
-    int state = mPlacePageBehavior.getState();
-    if (!isCollapsedState(state))
-      return;
+//    @AnchorBottomSheetBehavior.State
+//    int state = mPlacePageBehavior.getState();
+//    if (!isCollapsedState(state))
+//      return;
 
-    mPlacePageBehavior.setState(AnchorBottomSheetBehavior.STATE_ANCHORED);
+//    mPlacePageBehavior.setState(AnchorBottomSheetBehavior.STATE_ANCHORED);
   }
 
   @Override
