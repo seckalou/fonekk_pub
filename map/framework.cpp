@@ -852,21 +852,22 @@ void Framework::FillFeatureInfo(FeatureID const & fid, place_page::Info & info) 
 
 void Framework::FillPointInfo(m2::PointD const & mercator, string const & customTitle, place_page::Info & info) const
 {
-  auto const fid = GetFeatureAtPoint(mercator);
+    if(!customTitle.empty())
+    {
+        info.SetCustomName(customTitle);
+    } else
+    {
+        auto const fid = GetFeatureAtPoint(mercator);
 
-  if (fid.IsValid())
-  {
-    m_model.GetDataSource().ReadFeature(
-        [&](FeatureType & ft) { FillInfoFromFeatureType(ft, info); }, fid);
-  }
-  else
-  {
-    if (customTitle.empty())
-      info.SetCustomNameWithCoordinates(mercator, m_stringsBundle.GetString("core_placepage_unknown_place"));
-    else
-      info.SetCustomName(customTitle);
-    info.SetCanEditOrAdd(CanEditMap());
-  }
+        if (fid.IsValid())
+        {
+            m_model.GetDataSource().ReadFeature(
+                    [&](FeatureType & ft) { FillInfoFromFeatureType(ft, info); }, fid);
+        } else
+        {
+            info.SetCustomNameWithCoordinates(mercator, m_stringsBundle.GetString("core_placepage_unknown_place"));
+        }
+    }
 
   // This line overwrites mercator center from area feature which can be far away.
   info.SetMercator(mercator);
@@ -2215,7 +2216,7 @@ bool Framework::ShowMapForURL(string const & url)
       else
       {
         GetBookmarkManager().SelectionMark().SetPtOrg(point);
-        FillPointInfo(point, name, info);
+        FillPointInfo(point, utils::Nameify(name), info);
         ActivateMapSelection(false, df::SelectionShape::OBJECT_POI, info);
       }
       m_lastTapEvent = MakeTapEvent(info.GetMercator(), info.GetID(), TapEvent::Source::Other);

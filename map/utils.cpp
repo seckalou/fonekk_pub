@@ -64,4 +64,26 @@ void RegisterEyeEventIfPossible(eye::MapObject::Event::Type const type,
   if (!mapObject.IsEmpty())
     eye::Eye::Event::MapObjectEvent(mapObject, type, *userPos);
 }
+
+std::string Nameify(std::string name)
+{
+  std::stringstream ss;
+  char * tkn;
+  char * cname = new char[name.length() * sizeof(char)];
+
+  strcpy(cname, name.c_str());
+
+  tkn = strtok (cname,"_");
+  while (tkn != NULL)
+  {
+    tkn[0] = toupper(tkn[0]);
+    ss << tkn << " ";
+
+    tkn = strtok (NULL, "_");
+  }
+
+  delete[] cname;
+
+  return ss.str();
+}
 }  // namespace utils
