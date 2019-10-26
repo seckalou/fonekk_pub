@@ -64,6 +64,19 @@ public class Utils
 
   private Utils() {}
 
+  public static String nameify(String name)
+  {
+    String res = "";
+    String[] parts = name.split("\\s+");
+
+    for (String p:parts
+         ) {
+      res += p.substring(0,1).toUpperCase() + p.substring(1) + " ";
+    }
+
+    return res;
+  }
+
   public static boolean isLollipopOrLater()
   {
     return isTargetOrLater(Build.VERSION_CODES.LOLLIPOP);
