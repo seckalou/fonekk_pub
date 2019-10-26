@@ -1569,62 +1569,62 @@ public class PlacePageView extends NestedScrollView
   {
     List<PlacePageButtons.PlacePageButton> buttons = new ArrayList<>();
 
-    if (mapObject.getRoadWarningMarkType() != RoadWarningMarkType.UNKNOWN)
-    {
-      RoadWarningMarkType markType = mapObject.getRoadWarningMarkType();
-      PlacePageButtons.Item roadType = toPlacePageButton(markType);
-      buttons.add(roadType);
-      mButtons.setItems(buttons);
-      return;
-    }
+//    if (mapObject.getRoadWarningMarkType() != RoadWarningMarkType.UNKNOWN)
+//    {
+//      RoadWarningMarkType markType = mapObject.getRoadWarningMarkType();
+//      PlacePageButtons.Item roadType = toPlacePageButton(markType);
+//      buttons.add(roadType);
+//      mButtons.setItems(buttons);
+//      return;
+//    }
 
-    if (RoutingController.get().isRoutePoint(mapObject))
-    {
-      buttons.add(PlacePageButtons.Item.ROUTE_REMOVE);
-      mButtons.setItems(buttons);
-      return;
-    }
+//    if (RoutingController.get().isRoutePoint(mapObject))
+//    {
+//      buttons.add(PlacePageButtons.Item.ROUTE_REMOVE);
+//      mButtons.setItems(buttons);
+//      return;
+//    }
 
-    if (showBackButton || ParsedMwmRequest.isPickPointMode())
-      buttons.add(PlacePageButtons.Item.BACK);
+//    if (showBackButton || ParsedMwmRequest.isPickPointMode())
+//      buttons.add(PlacePageButtons.Item.BACK);
 
-    if (mSponsored != null)
-    {
-      switch (mSponsored.getType())
-      {
-        case Sponsored.TYPE_BOOKING:
-          buttons.add(BOOKING);
-          break;
-        case Sponsored.TYPE_OPENTABLE:
-          buttons.add(PlacePageButtons.Item.OPENTABLE);
-          break;
-        case Sponsored.TYPE_PARTNER:
-          int partnerIndex = mSponsored.getPartnerIndex();
-          if (partnerIndex >= 0 && !mSponsored.getUrl().isEmpty())
-            buttons.add(PlacePageButtons.getPartnerItem(partnerIndex));
-          break;
-        case Sponsored.TYPE_NONE:
-          break;
-      }
-    }
+//    if (mSponsored != null)
+//    {
+//      switch (mSponsored.getType())
+//      {
+//        case Sponsored.TYPE_BOOKING:
+//          buttons.add(BOOKING);
+//          break;
+//        case Sponsored.TYPE_OPENTABLE:
+//          buttons.add(PlacePageButtons.Item.OPENTABLE);
+//          break;
+//        case Sponsored.TYPE_PARTNER:
+//          int partnerIndex = mSponsored.getPartnerIndex();
+//          if (partnerIndex >= 0 && !mSponsored.getUrl().isEmpty())
+//            buttons.add(PlacePageButtons.getPartnerItem(partnerIndex));
+//          break;
+//        case Sponsored.TYPE_NONE:
+//          break;
+//      }
+//    }
 
-    if (!TextUtils.isEmpty(mapObject.getBookingSearchUrl()))
-      buttons.add(PlacePageButtons.Item.BOOKING_SEARCH);
+//    if (!TextUtils.isEmpty(mapObject.getBookingSearchUrl()))
+//      buttons.add(PlacePageButtons.Item.BOOKING_SEARCH);
 
-    if (mapObject.hasPhoneNumber())
-      buttons.add(PlacePageButtons.Item.CALL);
+//    if (mapObject.hasPhoneNumber())
+//      buttons.add(PlacePageButtons.Item.CALL);
 
     buttons.add(PlacePageButtons.Item.BOOKMARK);
 
     if (RoutingController.get().isPlanning() || showRoutingButton)
     {
-      buttons.add(PlacePageButtons.Item.ROUTE_FROM);
+//      buttons.add(PlacePageButtons.Item.ROUTE_FROM);
       buttons.add(PlacePageButtons.Item.ROUTE_TO);
-      if (RoutingController.get().isStopPointAllowed())
-        buttons.add(PlacePageButtons.Item.ROUTE_ADD);
+//      if (RoutingController.get().isStopPointAllowed())
+//        buttons.add(PlacePageButtons.Item.ROUTE_ADD);
     }
 
-    buttons.add(PlacePageButtons.Item.SHARE);
+//    buttons.add(PlacePageButtons.Item.SHARE);
 
     mButtons.setItems(buttons);
   }
