@@ -275,10 +275,12 @@ public class BottomSheetPlacePageController implements PlacePageController, Loca
   public void openFor(@NonNull MapObject object)
   {
     mPlacePage.setMapObject(object, (policy, isSameObject) -> {
-      @AnchorBottomSheetBehavior.State
-      int state = mPlacePageBehavior.getState();
-      if (isSameObject && !isHiddenState(state))
-        return;
+
+      // Me: Commented out because we will try re-opening even if it is same object
+//      @AnchorBottomSheetBehavior.State
+//      int state = mPlacePageBehavior.getState();
+//      if (isSameObject && !isHiddenState(state))
+//        return;
 
       mBannerRatio = 0;
       mPlacePage.resetScroll();
@@ -288,6 +290,7 @@ public class BottomSheetPlacePageController implements PlacePageController, Loca
         mPlacePageBehavior.setState(AnchorBottomSheetBehavior.STATE_ANCHORED);
         return;
       }
+
 
       UiUtils.show(mButtonsLayout);
       openPlacePage();
@@ -557,6 +560,8 @@ public class BottomSheetPlacePageController implements PlacePageController, Loca
   public void onActivityPaused(Activity activity)
   {
     mBannerController.onChangedVisibility(false);
+    // It seems like if old state isn't HIDDEN at the next opening from sms, the object wouldn't be selected (to be investigated. Better solution might be possible)
+    mPlacePageBehavior.setState(AnchorBottomSheetBehavior.STATE_HIDDEN);
   }
 
   @Override
