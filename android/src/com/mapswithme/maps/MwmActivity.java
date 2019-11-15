@@ -1738,7 +1738,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
     if (mIsTabletLayout)
     {
-      mMainMenu.setEnabled(MainMenu.Item.POINT_TO_POINT, !RoutingController.get().isPlanning());
+//      mMainMenu.setEnabled(MainMenu.Item.POINT_TO_POINT, !RoutingController.get().isPlanning());
       mMainMenu.setEnabled(MainMenu.Item.SEARCH, !RoutingController.get().isWaitingPoiPick());
     }
     else if (RoutingController.get().isPlanning())

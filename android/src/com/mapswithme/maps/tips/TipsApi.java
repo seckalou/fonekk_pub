@@ -51,17 +51,17 @@ public enum TipsApi
         }
       },
 
-  DISCOVERY(R.string.tips_discover_button_title,
-            R.string.tips_discover_button_message,
-            R.id.discovery, MainMenu.Item.DISCOVERY, MwmActivity.class)
-      {
-        @NonNull
-        @Override
-        public ClickInterceptor createClickInterceptor()
-        {
-          return ClickInterceptorFactory.createOpenDiscoveryScreenListener();
-        }
-      },
+//  DISCOVERY(R.string.tips_discover_button_title,
+//            R.string.tips_discover_button_message,
+//            R.id.discovery, MainMenu.Item.DISCOVERY, MwmActivity.class)
+//      {
+//        @NonNull
+//        @Override
+//        public ClickInterceptor createClickInterceptor()
+//        {
+//          return ClickInterceptorFactory.createOpenDiscoveryScreenListener();
+//        }
+//      },
 
   MAP_LAYERS(R.string.tips_map_layers_title,
              R.string.tips_map_layers_message,

@@ -85,7 +85,7 @@ class ClickInterceptorFactory
   {
     OpenDiscoveryScreen()
     {
-      super(TipsApi.DISCOVERY);
+      super(null);
     }
 
     @Override

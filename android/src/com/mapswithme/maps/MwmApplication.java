@@ -1,8 +1,11 @@
 package com.mapswithme.maps;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -185,6 +188,7 @@ public class MwmApplication extends Application
     mPurchaseOperationObservable = new PurchaseOperationObservable();
     mPlayer = new MediaPlayerWrapper(this);
     mGeofenceRegistry = new GeofenceRegistryImpl(this);
+
   }
 
   private void initNotificationChannels()

@@ -18,6 +18,12 @@
     android:layout_weight="1"/>
 
   <ImageView
+      android:id="@+id/main_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/main_button" />
+
+  <!--ImageView
     android:id="@+id/search"
     style="@style/MwmTheme.Menu.Line.Button"
     android:src="@drawable/ic_menu_search"/>
@@ -75,5 +81,5 @@
     android:layout_width="@dimen/menu_line_button_width_edge"
     android:layout_height="@dimen/menu_line_height"
     android:background="@drawable/menu_button_right"
-    android:src="@drawable/ic_menu_settings"/>
+    android:src="@drawable/ic_menu_settings"/-->
 </LinearLayout>

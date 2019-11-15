@@ -17,7 +17,7 @@
           android:id="@+id/main_button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          app:srcCompat="@drawable/main_button" />
+          android:src="@drawable/main_button" />
 
     <!--ImageView
       android:id="@+id/search"
