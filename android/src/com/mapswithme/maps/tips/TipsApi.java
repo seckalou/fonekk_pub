@@ -27,6 +27,18 @@ import java.util.List;
 
 public enum TipsApi
 {
+    MAIN(R.string.tips_main_button_title,
+            R.string.tips_main_button_message,
+            R.id.main_button, MainMenu.Item.MAIN_BUTTON, MwmActivity.class)
+            {
+                @NonNull
+                @Override
+                public ClickInterceptor createClickInterceptor()
+                {
+                    return null; //ClickInterceptorFactory.createOpenBookmarksCatalogListener();
+                }
+            },
+
   BOOKMARKS(R.string.tips_bookmarks_catalog_title,
             R.string.tips_bookmarks_catalog_message,
             R.id.bookmarks, MainMenu.Item.BOOKMARKS, MwmActivity.class)
@@ -63,8 +75,8 @@ public enum TipsApi
 //        }
 //      },
 
-  MAP_LAYERS(R.string.tips_map_layers_title,
-             R.string.tips_map_layers_message,
+  INVITE(R.string.tips_invite_button_title,
+             R.string.tips_invite_button_message,
              R.id.invite, null, MwmActivity.class)
       {
 
@@ -72,7 +84,7 @@ public enum TipsApi
         @Override
         public ClickInterceptor createClickInterceptor()
         {
-          return ClickInterceptorFactory.createActivateSubwayLayerListener();
+          return null;// ClickInterceptorFactory.createActivateSubwayLayerListener();
         }
       },
 
@@ -179,5 +191,26 @@ public enum TipsApi
     LOGGER.d(TAG, "tipsApi = " + tipsApi);
     return tipsApi;
   }
+
+    public static <T> void showUsage(@NonNull Context context,
+                                             @NonNull Class<T> requiredScreenClass)
+    {
+//        if (MwmApplication.from(context).isFirstLaunch())
+//            return;
+
+        int index = 3;
+        TipsApi value = values()[index];
+        TipsApi tipsApi = value.isScreenAllowed(requiredScreenClass) ? value
+                : STUB;
+        LOGGER.d(TAG, "tipsApi = " + tipsApi);
+        tipsApi.showTutorial((Activity) context);
+
+        index = 0;
+        value =  values()[index];
+        tipsApi = value != STUB && value.isScreenAllowed(requiredScreenClass) ? value
+                : STUB;
+        LOGGER.d(TAG, "tipsApi = " + tipsApi);
+        tipsApi.showTutorial((Activity) context);
+    }
 
 }

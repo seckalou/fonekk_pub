@@ -56,7 +56,7 @@ class ClickInterceptorFactory
   {
     ActivateSubwayLayer()
     {
-      super(TipsApi.MAP_LAYERS);
+      super(null);
     }
 
     @Override

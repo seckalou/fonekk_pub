@@ -2160,4 +2160,7 @@
 	<string name="your_name">Entrez votre nom</string>
     <string name="name_err_msg">Vous devez entrer un nom.</string>
 	<string name="invite_sms">%1$s vous invite a partager votre location sur Fonnek. Cliquer sur le lien pour partager %2$s</string>
+    <string name="tips_main_button_title">Partagez votre positon</string>
+	<string name="tips_main_button_message">En appuyant sur ce button, vous pouvez partager votre position par sms, watsapp, messenger etc...</string>
+	<string name="tips_invite_button_message">En appuyant ici, vous pouvez inviter d\'autres à partager leur position avec vous.</string>
 </resources>

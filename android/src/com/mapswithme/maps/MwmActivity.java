@@ -624,7 +624,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     // If the map activity is launched by any incoming intent (deeplink, update maps event, etc)
     // or it's the first launch (onboarding) we haven't to try restoring the route,
     // showing the tips, etc.
-    if (isConsumed || MwmApplication.from(this).isFirstLaunch())
+    if (isConsumed /*|| MwmApplication.from(this).isFirstLaunch()*/)
       return;
 
     if (savedInstanceState == null && RoutingController.get().hasSavedRoute())
@@ -658,13 +658,16 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initTips()
   {
-    TipsApi api = TipsApi.requestCurrent(this, getClass());
-    if (api == TipsApi.STUB)
-      return;
-
-    api.showTutorial(getActivity());
-
-    Statistics.INSTANCE.trackTipsEvent(Statistics.EventName.TIPS_TRICKS_SHOW, api.ordinal());
+    int ln = Counters.getLaunchNumber();
+    if(ln < 3)
+      TipsApi.showUsage(this, getClass());
+//    TipsApi api = TipsApi.requestCurrent(this, getClass());
+//    if (api == TipsApi.STUB)
+//      return;
+//
+//    api.showTutorial(getActivity());
+//
+//    Statistics.INSTANCE.trackTipsEvent(Statistics.EventName.TIPS_TRICKS_SHOW, api.ordinal());
   }
 
   private void initFilterViews()

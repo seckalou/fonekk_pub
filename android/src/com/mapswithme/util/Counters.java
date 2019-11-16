@@ -34,6 +34,11 @@ public final class Counters
     updateLaunchCounter();
   }
 
+  public static int getLaunchNumber()
+  {
+    return MwmApplication.prefs().getInt(KEY_APP_LAUNCH_NUMBER, 0);
+  }
+
   public static int getFirstInstallVersion()
   {
     return MwmApplication.prefs().getInt(KEY_APP_FIRST_INSTALL_VERSION, 0);
