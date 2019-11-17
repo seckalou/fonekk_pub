@@ -1190,7 +1190,7 @@ public class PlacePageView extends NestedScrollView
 
   private boolean isNetworkNeeded()
   {
-    return mMapObject != null && (isSponsored() || mMapObject.getBanners() != null);
+    return false;// mMapObject != null && (isSponsored() || mMapObject.getBanners() != null);
   }
 
   void refreshViews(@NonNull NetworkPolicy policy)
