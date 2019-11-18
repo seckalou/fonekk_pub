@@ -8,7 +8,7 @@ OMIM_PATH="${OMIM_PATH:-$(cd "$(dirname "$0")/../.."; pwd)}"
 OUT_PATH="$OMIM_PATH/out/release"
 SKIN_GENERATOR="$OUT_PATH/skin_generator_tool"
 DATA_PATH="$OMIM_PATH/fonekk_priv/data"
-DATA_PATH="$OMIM_PATH/data"
+#DATA_PATH="$OMIM_PATH/data"
 DATA_OUT_PATH="$OMIM_PATH/data"
 LOCAL_ADS_SYMBOLS_GENERATOR="$OMIM_PATH/tools/python/generate_local_ads_symbols.py"
 

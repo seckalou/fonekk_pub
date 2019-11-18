@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e -u -x
 
+echo 'It is me Alou and I don t wanna overwrite res/values/strings.xml'
+exit 1
+
 OMIM_PATH="$(dirname "$0")/../.."
 TWINE="$OMIM_PATH/tools/twine/twine"
 STRINGS_PATH="$OMIM_PATH/data/strings"
