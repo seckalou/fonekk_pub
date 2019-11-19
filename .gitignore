@@ -12,6 +12,8 @@ object_script.*.Release
 stxxl.errlog
 stxxl.log
 screenlog.0
+data/resources*
+data/styles*
 data/*.mwm.osm2ft
 data/*.mwm.routing
 data/*.mwmmeta
