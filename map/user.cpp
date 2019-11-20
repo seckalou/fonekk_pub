@@ -680,13 +680,13 @@ std::string User::GetPhoneAuthUrl(std::string const & redirectUri)
 // static
 std::string User::GetPrivacyPolicyLink()
 {
-  return ""; // "https://legal.my.com/us/maps/privacy/";
+  return "http://alassaneseck.com/fonekk/t_and_c.html"; // "https://legal.my.com/us/maps/privacy/";
 }
 
 // static
 std::string User::GetTermsOfUseLink()
 {
-  return ""; // "https://legal.my.com/us/maps/tou/";
+  return "http://alassaneseck.com/fonekk/t_and_c.html"; // "https://legal.my.com/us/maps/tou/";
 }
 
 void User::Request(std::string const & url, BuildRequestHandler const & onBuildRequest,
