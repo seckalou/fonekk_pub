@@ -547,7 +547,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
   private void invite()
   {
     final String httpUrl = Constants.Url.HTTP_GE0_PREFIX;
-    final String body = getString(R.string.invite_sms, this.mUserName , httpUrl);
+    final String body = getString(R.string.invite_sms, Utils.nameify(this.mUserName) , httpUrl);
     ShareOption.ANY.share(this, body);
   }
 

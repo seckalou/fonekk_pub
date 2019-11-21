@@ -2760,7 +2760,7 @@
     <string name="action_cancel">Cancel</string>
 	<string name="your_name">What\'s your name?</string>
     <string name="name_err_msg">Make sure you entered your name</string>
-	<string name="invite_sms">Hey, %1$s is inviting you share your location in Fonnek. Click the link to share %2$s</string>
+	<string name="invite_sms">%1$s is inviting you share your location in Fonnek. Click the link to share %2$s</string>
 	<string name="tips_main_button_title">Share your location</string>
 	<string name="tips_main_button_message">By pressing this button you can share your location with other by sms, watsapp, messenger etc...</string>
 	<string name="tips_invite_button_title">Invite others</string>
