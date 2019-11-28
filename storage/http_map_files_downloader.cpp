@@ -81,7 +81,7 @@ void HttpMapFilesDownloader::OnServersListDownloaded(ServersListCallback const &
 {
   CHECK_THREAD_CHECKER(m_checker, ());
   vector<string> urls;
-  GetServerListFromRequest(request, urls);
+  downloader::GetDefaultServerList(urls);
   callback(urls);
 }
 

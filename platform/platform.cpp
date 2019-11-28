@@ -164,6 +164,11 @@ string Platform::DefaultUrlsJSON() const
   return DEFAULT_URLS_JSON;
 }
 
+string Platform::DefaultUrls() const
+{
+  return DEFAULT_URLS;
+}
+
 bool Platform::RemoveFileIfExists(string const & filePath)
 {
   return IsFileExistsByFullPath(filePath) ? base::DeleteFileX(filePath) : true;

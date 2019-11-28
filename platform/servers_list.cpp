@@ -41,4 +41,15 @@ void GetServerListFromRequest(HttpRequest const & request, vector<string> & urls
   LOG(LWARNING, ("Can't get servers list from request, using default servers:", urls));
 }
 
+void GetDefaultServerList(vector<string> & urls)
+{
+    string urlsList = GetPlatform().DefaultUrls();
+
+    std::stringstream ss(urlsList);
+    std::string token;
+    while (std::getline(ss, token, ',')) {
+        urls.push_back(token);
+    }
+}
+
 } // namespace downloader

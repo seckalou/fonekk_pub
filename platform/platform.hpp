@@ -283,6 +283,9 @@ public:
   /// @return JSON-encoded list of urls if metaserver is unreachable
   std::string DefaultUrlsJSON() const;
 
+    /// @return comma separated list of urls if metaserver is unreachable
+    std::string DefaultUrls() const;
+
   bool IsTablet() const { return m_isTablet; }
 
   /// @return information about kinds of memory which are relevant for a platform.
