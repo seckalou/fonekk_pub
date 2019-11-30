@@ -15,17 +15,17 @@ public class UserActionsLogger
 
   public static void logBookingFilterUsedEvent()
   {
-    nativeBookingFilterUsed();
+//    nativeBookingFilterUsed();
   }
 
   public static void logDiscoveryShownEvent()
   {
-    nativeDiscoveryShown();
+//    nativeDiscoveryShown();
   }
 
   public static void logBookmarksCatalogShownEvent()
   {
-    nativeBookmarksCatalogShown();
+//    nativeBookmarksCatalogShown();
   }
 
   public static void logDiscoveryItemClickedEvent(@NonNull DiscoveryUserEvent event)
@@ -35,17 +35,17 @@ public class UserActionsLogger
 
   public static void logAddToBookmarkEvent()
   {
-    nativeAddToBookmark();
+//    nativeAddToBookmark();
   }
 
   public static void logUgcEditorOpened()
   {
-    nativeUgcEditorOpened();
+//    nativeUgcEditorOpened();
   }
 
   public static void logUgcSaved()
   {
-    nativeUgcSaved();
+//    nativeUgcSaved();
   }
 
   private static native void nativeTipClicked(int type, int event);
