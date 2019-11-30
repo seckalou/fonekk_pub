@@ -10,7 +10,7 @@ public class UserActionsLogger
 {
   public static void logTipClickedEvent(@NonNull TipsApi provider, @NonNull TipsAction action)
   {
-    nativeTipClicked(provider.ordinal(), action.ordinal());
+//    nativeTipClicked(provider.ordinal(), action.ordinal());
   }
 
   public static void logBookingFilterUsedEvent()
@@ -30,7 +30,7 @@ public class UserActionsLogger
 
   public static void logDiscoveryItemClickedEvent(@NonNull DiscoveryUserEvent event)
   {
-    nativeDiscoveryItemClicked(event.ordinal());
+//    nativeDiscoveryItemClicked(event.ordinal());
   }
 
   public static void logAddToBookmarkEvent()
