@@ -12,16 +12,16 @@
     android:orientation="vertical">
 
     <TextView
-      android:id="@+id/tv__download_message"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/margin_base_plus"
-      android:drawableLeft="@mipmap/ic_launcher"
-      android:drawablePadding="@dimen/margin_base"
-      android:drawableStart="@mipmap/ic_launcher"
-      android:padding="@dimen/margin_half"
-      android:textAppearance="@style/MwmTextAppearance.Body2"
-      tools:text="@string/download_resources"/>
+        android:id="@+id/tv__download_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_base_plus"
+        android:drawableTop="@drawable/ic_launcher_foreground"
+        android:drawablePadding="@dimen/margin_base"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/margin_half"
+        android:textAppearance="@style/MwmTextAppearance.Body2"
+        tools:text="@string/download_resources" />
 
     <ProgressBar
       android:id="@+id/pb__download_resources"

@@ -183,7 +183,8 @@ extern "C"
 
     LOG(LINFO, ("Finished URL list download for", curFile.m_fileName));
 
-    GetServerListFromRequest(req, curFile.m_urls);
+//    GetServerListFromRequest(req, curFile.m_urls);
+    GetDefaultServerList(curFile.m_urls);
 
     storage::Storage const & storage = g_framework->GetStorage();
     for (size_t i = 0; i < curFile.m_urls.size(); ++i)

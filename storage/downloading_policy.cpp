@@ -20,8 +20,9 @@ bool StorageDownloadingPolicy::IsCellularDownloadEnabled()
 
 bool StorageDownloadingPolicy::IsDownloadingAllowed()
 {
-  return !(GetPlatform().ConnectionStatus() == Platform::EConnectionType::CONNECTION_WWAN &&
-           !IsCellularDownloadEnabled());
+  // We want to always try and download
+  return true; // !(GetPlatform().ConnectionStatus() == Platform::EConnectionType::CONNECTION_WWAN &&
+          // !IsCellularDownloadEnabled());
 }
 
 void StorageDownloadingPolicy::ScheduleRetry(storage::CountriesSet const & failedCountries,

@@ -193,27 +193,29 @@ public final class MapManager
 
   private static boolean warnOn3gInternal(Activity activity, @NonNull final Runnable onAcceptListener)
   {
-    if (nativeIsDownloadOn3gEnabled() || !ConnectionState.isMobileConnected())
-    {
+    // We want to always try to download
+
+//    if (nativeIsDownloadOn3gEnabled() || !ConnectionState.isMobileConnected())
+//    {
       onAcceptListener.run();
       return false;
-    }
-
-    new AlertDialog.Builder(activity)
-        .setMessage(String.format("%1$s\n\n%2$s", activity.getString(R.string.download_over_mobile_header),
-                                                  activity.getString(R.string.download_over_mobile_message)))
-        .setNegativeButton(android.R.string.no, null)
-        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-        {
-          @Override
-          public void onClick(DialogInterface dlg, int which)
-          {
-            nativeEnableDownloadOn3g();
-            onAcceptListener.run();
-          }
-        }).show();
-
-    return true;
+//    }
+//
+//    new AlertDialog.Builder(activity)
+//        .setMessage(String.format("%1$s\n\n%2$s", activity.getString(R.string.download_over_mobile_header),
+//                                                  activity.getString(R.string.download_over_mobile_message)))
+//        .setNegativeButton(android.R.string.no, null)
+//        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+//        {
+//          @Override
+//          public void onClick(DialogInterface dlg, int which)
+//          {
+//            nativeEnableDownloadOn3g();
+//            onAcceptListener.run();
+//          }
+//        }).show();
+//
+//    return true;
   }
 
   static boolean warnOn3gUpdate(Activity activity, @Nullable String countryId, @NonNull final Runnable onAcceptListener)

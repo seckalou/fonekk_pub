@@ -123,14 +123,14 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
       int status = MapManager.nativeGetStatus(mCurrentCountry);
       String name = MapManager.nativeGetName(mCurrentCountry);
 
-      UiUtils.show(mTvLocation);
+//      UiUtils.show(mTvLocation);
 
       if (status == CountryItem.STATUS_DONE)
         mTvLocation.setText(String.format(getString(R.string.download_location_map_up_to_date), name));
       else
       {
         final CheckBox checkBox = (CheckBox) findViewById(R.id.chb__download_country);
-        UiUtils.show(checkBox);
+//        UiUtils.show(checkBox);
 
         String locationText;
         String checkBoxText;
@@ -226,7 +226,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
 
       setAction(DOWNLOAD);
 
-      if (ConnectionState.isWifiConnected())
+//      if (ConnectionState.isWifiConnected())
         onDownloadClicked();
 
       return;
@@ -273,7 +273,7 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
 
   private void setDownloadMessage(int bytesToDownload)
   {
-    mTvMessage.setText(getString(R.string.download_resources, StringUtils.getFileSizeString(bytesToDownload)));
+    mTvMessage.setText(getString(R.string.download_resources,  String.valueOf(1)));
   }
 
   private boolean prepareFilesDownload(boolean showMap)
@@ -457,18 +457,18 @@ public class DownloadResourcesLegacyActivity extends BaseMwmFragmentActivity
       // TODO fix the hack when separate download of World-s will be removed or refactored
       Framework.nativeDeregisterMaps();
       Framework.nativeRegisterMaps();
-      if (mCurrentCountry != null && mChbDownloadCountry.isChecked())
+      if (mCurrentCountry != null /*&& mChbDownloadCountry.isChecked()*/) // because download country is now automatically triggered after world finished
       {
         CountryItem item = CountryItem.fill(mCurrentCountry);
 
         UiUtils.hide(mChbDownloadCountry, mTvLocation);
-        mTvMessage.setText(getString(R.string.downloading_country_can_proceed, item.name));
+        mTvMessage.setText(getString(R.string.download_resources, String.valueOf(2)));
         mProgress.setMax((int)item.totalSize);
         mProgress.setProgress(0);
 
         mCountryDownloadListenerSlot = MapManager.nativeSubscribe(mCountryDownloadListener);
         MapManager.nativeDownload(mCurrentCountry);
-        setAction(PROCEED_TO_MAP);
+//        setAction(PROCEED_TO_MAP);
       }
       else
       {

@@ -107,7 +107,7 @@
 	<string name="not_enough_free_space_on_sdcard">Veuillez d\'abord libérer de l\'espace sur la carte SD/le stockage USB afin d\'utiliser l\'appli</string>
 	<string name="not_enough_memory">Mémoire insuffisante pour lancer l\'appli</string>
 	<string name="free_space_for_country">Veuillez d\'abord libérer %1$s sur votre appareil avant de télécharger %2$s</string>
-	<string name="download_resources">Avant de commencer, permettez-nous de télécharger la carte générale du monde dans votre appareil.\n%s de données sont nécessaires.</string>
+	<string name="download_resources">Téléchargement des cartes en cours... (%s sur 2)</string>
 	<string name="getting_position">Obtention de la position actuelle</string>
 	<string name="download_resources_continue">Aller sur la carte</string>
 	<string name="downloading_country_can_proceed">%s en téléchargement. Vous pouvez\nmaintenant aller sur la carte.</string>

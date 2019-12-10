@@ -118,7 +118,7 @@
 	<string name="not_enough_free_space_on_sdcard">Please free up some space on the SD card/USB storage first in order to use the app</string>
 	<string name="not_enough_memory">Not enough memory to launch app</string>
 	<string name="free_space_for_country">Please free %1$s on your device first in order to download %2$s</string>
-	<string name="download_resources">Before you start using the app, allow us to download the general world map to your device.\nIt will use %s of storage.</string>
+	<string name="download_resources">Downloading maps... (%s of 2)</string>
 	<string name="getting_position">Getting current position</string>
 	<string name="download_resources_continue">Go to Map</string>
 	<string name="downloading_country_can_proceed">Downloading %s. You can now\nproceed to the map.</string>
