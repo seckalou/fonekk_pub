@@ -347,10 +347,10 @@ public class SplashActivity extends AppCompatActivity
       return;
     }
 
-    boolean showNews = NewsFragment.showOn(this, this);
+    boolean showNews = false; // NewsFragment.showOn(this, this);
     if (!showNews)
     {
-      if (ViralFragment.shouldDisplay())
+      if ( false /*ViralFragment.shouldDisplay()*/)
       {
         UiUtils.hide(mIvLogo, mAppName);
         ViralFragment dialog = new ViralFragment();
