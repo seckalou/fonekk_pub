@@ -251,6 +251,10 @@ public enum Statistics
 
   public static class EventName
   {
+    // Fonekk
+    public static final String LOCATION_SHARE = "location_share";
+    public static final String INVITE_SEND = "invite_send";
+
     // Downloader
     public static final String DOWNLOADER_MIGRATION_DIALOG_SEEN = "Downloader_Migration_dialogue";
     public static final String DOWNLOADER_MIGRATION_STARTED = "Downloader_Migration_started";
@@ -477,6 +481,8 @@ public enum Statistics
 
   public static class EventParam
   {
+    public static final String OBJECT_NAME = "object_name";
+    public static final String OBJECT_TEL = "object_tel";
     public static final String FROM = "from";
     public static final String TO = "to";
     public static final String OPTION = "option";
@@ -760,6 +766,24 @@ public enum Statistics
   public void trackRatingDialog(float rating)
   {
     trackEvent(EventName.RATE_DIALOG_RATED, params().add(EventParam.RATING, String.valueOf(rating)));
+  }
+
+  public void trackLocationShare(String name, String tel, String lon, String lat)
+  {
+    trackEvent(EventName.LOCATION_SHARE,
+            params().add(EventParam.OBJECT_NAME, name)
+                    .add(EventParam.OBJECT_TEL, lon)
+                    .add(EventParam.OBJECT_LON, lon)
+                    .add(EventParam.OBJECT_LON, lon));
+  }
+
+  public void trackInvitShare(String name, String tel, String lon, String lat)
+  {
+    trackEvent(EventName.INVITE_SEND,
+            params().add(EventParam.OBJECT_NAME, name)
+                    .add(EventParam.OBJECT_TEL, lon)
+                    .add(EventParam.OBJECT_LON, lon)
+                    .add(EventParam.OBJECT_LON, lon));
   }
 
   public void trackConnectionState()

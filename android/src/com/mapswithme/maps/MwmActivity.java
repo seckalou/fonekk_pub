@@ -534,6 +534,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       final String httpUrl = Framework.getHttpGe0Url(loc.getLatitude(), loc.getLongitude(), Framework.nativeGetDrawScale(), mUserName.replace(" ", "_"));
       final String body = Utils.nameify(mUserName) + " " + getString(R.string.my_position_share_sms, geoUrl, httpUrl);
       ShareOption.ANY.share(this, body);
+      Statistics.INSTANCE.trackLocationShare(mUserName,"",Double.toString(loc.getLongitude()),Double.toString(loc.getLatitude()));
       return;
     }
 
@@ -549,6 +550,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
     final String httpUrl = Constants.Url.HTTP_GE0_PREFIX;
     final String body = getString(R.string.invite_sms, Utils.nameify(this.mUserName) , httpUrl);
     ShareOption.ANY.share(this, body);
+    Statistics.INSTANCE.trackInvitShare(mUserName,"","","");
   }
 
   @Override
