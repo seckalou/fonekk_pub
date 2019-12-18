@@ -38,14 +38,11 @@ import com.mapswithme.maps.base.BaseMwmFragmentActivity;
 import com.mapswithme.maps.base.OnBackPressListener;
 import com.mapswithme.maps.bookmarks.BookmarkCategoriesActivity;
 import com.mapswithme.maps.bookmarks.BookmarksCatalogActivity;
-import com.mapswithme.maps.bookmarks.TargetPositionListener;
 import com.mapswithme.maps.bookmarks.data.BookmarkCategory;
 import com.mapswithme.maps.bookmarks.data.BookmarkManager;
 import com.mapswithme.maps.bookmarks.data.CatalogCustomProperty;
 import com.mapswithme.maps.bookmarks.data.CatalogTagsGroup;
 import com.mapswithme.maps.bookmarks.data.MapObject;
-import com.mapswithme.maps.bookmarks.data.TargetPosition;
-import com.mapswithme.maps.bookmarks.data.TargetPositionManager;
 import com.mapswithme.maps.dialog.AlertDialogCallback;
 import com.mapswithme.maps.dialog.DialogUtils;
 import com.mapswithme.maps.dialog.DrivingOptionsDialogFactory;
@@ -162,7 +159,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
                                  AdsRemovalPurchaseControllerProvider,
                                  AdsRemovalActivationCallback,
                                  PlacePageController.SlideListener,
-                                 AlertDialogCallback, RoutingModeListener, TargetPositionListener
+                                 AlertDialogCallback, RoutingModeListener
 {
   private static final Logger LOGGER = LoggerFactory.INSTANCE.getLogger(LoggerFactory.Type.MISC);
   private static final String TAG = MwmActivity.class.getSimpleName();
@@ -250,11 +247,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @SuppressWarnings("NullableProblems")
   @NonNull
   private PlacePageController mPlacePageController;
-
-  @Override
-  public void onNewTargetPositionAvailable(TargetPosition pos) {
-
-  }
 
   public interface LeftAnimationTrackListener
   {
@@ -1393,8 +1385,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
     if (MapFragment.nativeIsEngineCreated())
       LocationHelper.INSTANCE.attach(this);
     mPlacePageController.onActivityStarted(this);
-
-    TargetPositionManager.INSTANCE.addTargetPositionListener(this);
   }
 
   @Override
