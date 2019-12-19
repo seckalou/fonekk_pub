@@ -61,6 +61,7 @@ if git clone --depth 1 "$PRIVATE_REPO" "$TMP_REPO_DIR"; then
   echo "$PRIVATE_REPO" > "$SAVED_PRIVATE_REPO_FILE"
   rm -rf "$TMP_REPO_DIR/.git" "$TMP_REPO_DIR/README.md"
   cp -Rv "$TMP_REPO_DIR"/private.h "$BASE_PATH"
+  cp -Rv "$TMP_REPO_DIR"/google-services.json "$BASE_PATH"/android/
   rm -rf "$TMP_REPO_DIR"
   echo "Private files have been updated."
 fi

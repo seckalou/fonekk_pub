@@ -171,6 +171,7 @@ android/pushwoosh.properties
 android/libnotify.properties
 android/res/values/google-service.xml
 server
+android/google-services.json
 
 *.li
 
