@@ -6,6 +6,7 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -152,6 +153,9 @@ import static com.mapswithme.util.statistics.Statistics.ParamValue.TRAFFIC;
 import static com.mapswithme.util.statistics.Statistics.ParamValue.TRANSIT;
 import static com.mapswithme.util.statistics.Statistics.ParamValue.UNKNOWN;
 import static com.mapswithme.util.statistics.Statistics.ParamValue.VEHICLE;
+
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public enum Statistics
 {
@@ -642,11 +646,16 @@ public enum Statistics
     else
       org.alohalytics.Statistics.disable(context);
     configure(context);
+
+    mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
   }
 
   @SuppressWarnings("NullableProblems")
   @NonNull
   private ExternalLibrariesMediator mMediator;
+
+  @NonNull
+  private FirebaseAnalytics mFirebaseAnalytics;
 
   public void setMediator(@NonNull ExternalLibrariesMediator mediator)
   {
@@ -667,6 +676,12 @@ public enum Statistics
     if (mEnabled)
       org.alohalytics.Statistics.logEvent(name);
     mMediator.getEventLogger().logEvent(name, Collections.emptyMap());
+
+    Bundle bundle = new Bundle();
+    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, name);
+    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, name);
+    bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "generic");
+    mFirebaseAnalytics.logEvent(name, null);
   }
 
   public void trackEvent(@NonNull String name, @NonNull Map<String, String> params)
@@ -675,6 +690,18 @@ public enum Statistics
       org.alohalytics.Statistics.logEvent(name, params);
 
     mMediator.getEventLogger().logEvent(name, params);
+
+    Bundle b = new Bundle();
+    for (Map.Entry<String, String> entry : params.entrySet()) {
+      b.putString(entry.getKey(), entry.getValue());
+    }
+
+    Bundle bundle = new Bundle();
+    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, name);
+    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, name);
+    bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "generic");
+    bundle.putBundle(FirebaseAnalytics.Param.CONTENT, b);
+    mFirebaseAnalytics.logEvent(name, b);
   }
 
   public void trackEvent(@NonNull String name, @Nullable Location location, @NonNull Map<String, String> params)
@@ -692,6 +719,18 @@ public enum Statistics
       org.alohalytics.Statistics.logEvent(name, eventDictionary.toArray(new String[0]), location);
 
     mMediator.getEventLogger().logEvent(name, params);
+
+    Bundle b = new Bundle();
+    for (Map.Entry<String, String> entry : params.entrySet()) {
+      b.putString(entry.getKey(), entry.getValue());
+    }
+
+    Bundle bundle = new Bundle();
+    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, name);
+    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, name);
+    bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "generic");
+    bundle.putBundle(FirebaseAnalytics.Param.CONTENT, b);
+    mFirebaseAnalytics.logEvent(name, b);
   }
 
   public void trackEvent(@NonNull String name, @NonNull ParameterBuilder builder)
@@ -708,6 +747,7 @@ public enum Statistics
     }
 
     mMediator.getEventLogger().startActivity(activity);
+    mFirebaseAnalytics.logEvent("activity_start", Bundle.EMPTY);
   }
 
   public void stopActivity(Activity activity)
@@ -718,6 +758,7 @@ public enum Statistics
       org.alohalytics.Statistics.onStop(activity);
     }
     mMediator.getEventLogger().stopActivity(activity);
+    mFirebaseAnalytics.logEvent("activity_stop", Bundle.EMPTY);
   }
 
   public void setStatEnabled(boolean isEnabled)
