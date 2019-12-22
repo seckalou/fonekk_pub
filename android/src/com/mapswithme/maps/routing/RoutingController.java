@@ -451,11 +451,11 @@ public class RoutingController implements TaxiManager.TaxiListener
   {
     mLogger.d(TAG, "prepare (" + (endPoint == null ? "route)" : "p2p)"));
 
-    if (!Config.isRoutingDisclaimerAccepted())
-    {
-      showDisclaimer(startPoint, endPoint, fromApi);
-      return;
-    }
+//    if (!Config.isRoutingDisclaimerAccepted())
+//    {
+//      showDisclaimer(startPoint, endPoint, fromApi);
+//      return;
+//    }
 
     initLastRouteType(startPoint, endPoint, fromApi);
     prepare(startPoint, endPoint, mLastRouterType, fromApi);
