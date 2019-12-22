@@ -652,9 +652,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
   private void initTips()
   {
-    int ln = Counters.getLaunchNumber();
-    if(ln < 3)
+    if(Counters.getLaunchNumber() < 3 && !Counters.isTipsSeen())
+    {
       TipsApi.showUsage(this, getClass());
+      Counters.setTipsSeen();
+    }
+
 //    TipsApi api = TipsApi.requestCurrent(this, getClass());
 //    if (api == TipsApi.STUB)
 //      return;

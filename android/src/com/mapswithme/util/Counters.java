@@ -13,6 +13,7 @@ import com.mapswithme.maps.R;
 
 public final class Counters
 {
+  static final String KEY_MISC_TIPS_SEEN = "TipsSeen";
   static final String KEY_APP_LAUNCH_NUMBER = "LaunchNumber";
   static final String KEY_APP_FIRST_INSTALL_VERSION = "FirstInstallVersion";
   static final String KEY_APP_FIRST_INSTALL_FLAVOR = "FirstInstallFlavor";
@@ -56,6 +57,20 @@ public final class Counters
                   .putBoolean(KEY_MISC_FIRST_START_DIALOG_SEEN, true)
                   .apply();
   }
+
+  public static boolean isTipsSeen()
+  {
+    return MwmApplication.prefs().getBoolean(KEY_MISC_TIPS_SEEN, false);
+  }
+
+  public static void setTipsSeen()
+  {
+    MwmApplication.prefs()
+            .edit()
+            .putBoolean(KEY_MISC_TIPS_SEEN, true)
+            .apply();
+  }
+
 
 
   public static void setWhatsNewShown()
