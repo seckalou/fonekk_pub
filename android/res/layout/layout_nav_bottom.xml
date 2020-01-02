@@ -75,7 +75,7 @@
       android:id="@+id/invite"
       android:layout_weight="0.2"
       android:layout_width="0dp"
-      android:layout_height="@dimen/nav_icon_size"
+      android:layout_height="@dimen/menu_line_button_width"
       android:scaleType="center"
       android:visibility="gone"
       android:background="?attr/nav_bg_subway"/>

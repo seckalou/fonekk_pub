@@ -368,7 +368,7 @@ public class MainMenu extends BaseMenu
   @Override
   protected int getHeightResId()
   {
-    return R.dimen.menu_line_height;
+    return R.dimen.menu_line_button_width;
   }
 
   public void setState(State state, boolean animateToggle, boolean isFullScreen)
