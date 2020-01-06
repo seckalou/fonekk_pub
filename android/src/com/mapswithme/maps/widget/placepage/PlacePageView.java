@@ -1499,10 +1499,16 @@ public class PlacePageView extends NestedScrollView
     if (mBookmarkButtonIcon == null || mBookmarkButtonFrame == null)
       return;
 
-    if (mBookmarkSet)
+    TextView tmp =  mBookmarkButtonFrame.findViewById(R.id.title);
+
+    if (mBookmarkSet) {
       mBookmarkButtonIcon.setImageResource(R.drawable.ic_bookmarks_on);
-    else
+      tmp.setText(R.string.delete);
+    }
+    else {
       mBookmarkButtonIcon.setImageDrawable(Graphics.tint(getContext(), R.drawable.ic_bookmarks_off, R.attr.iconTint));
+      tmp.setText(R.string.bookmark);
+    }
 
     boolean isEditable = isEditableMapObject();
     mBookmarkButtonFrame.setEnabled(isEditable);
@@ -1624,7 +1630,7 @@ public class PlacePageView extends NestedScrollView
 //        buttons.add(PlacePageButtons.Item.ROUTE_ADD);
     }
 
-//    buttons.add(PlacePageButtons.Item.SHARE);
+    buttons.add(PlacePageButtons.Item.SHARE);
 
     mButtons.setItems(buttons);
   }

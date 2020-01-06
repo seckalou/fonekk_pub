@@ -85,7 +85,7 @@ public class MapFragment extends BaseMwmFragment
     {
       nativeSetupWidget(WIDGET_COPYRIGHT,
                         UiUtils.dimen(R.dimen.margin_ruler_left),
-                        mHeight - UiUtils.dimen(R.dimen.margin_ruler_bottom),
+                        mHeight,// - UiUtils.dimen(R.dimen.margin_ruler_bottom),
                         ANCHOR_LEFT_BOTTOM);
       sWasCopyrightDisplayed = true;
     }
@@ -118,7 +118,7 @@ public class MapFragment extends BaseMwmFragment
   {
     nativeSetupWidget(WIDGET_RULER,
                       UiUtils.dimen(R.dimen.margin_ruler_left),
-                      mHeight - UiUtils.dimen(R.dimen.margin_ruler_bottom) + offsetY,
+                      mHeight - 250, // - UiUtils.dimen(R.dimen.margin_ruler_bottom) + offsetY,
                       ANCHOR_LEFT_BOTTOM);
     if (forceRedraw && mSurfaceCreated)
       nativeApplyWidgets();
@@ -128,7 +128,7 @@ public class MapFragment extends BaseMwmFragment
   {
     nativeSetupWidget(WIDGET_WATERMARK,
                       mWidth - UiUtils.dimen(R.dimen.margin_watermark_right),
-                      mHeight - UiUtils.dimen(R.dimen.margin_watermark_bottom) + offsetY,
+                      mHeight, //- UiUtils.dimen(R.dimen.margin_watermark_bottom) + offsetY,
                       ANCHOR_RIGHT_BOTTOM);
     if (forceRedraw && mSurfaceCreated)
       nativeApplyWidgets();

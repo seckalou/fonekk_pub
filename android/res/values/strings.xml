@@ -546,7 +546,7 @@
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_roaming">You are going to download %s MB using Mobile Data (in Roaming). This may result in additional charges, depending on your operator mobile data plan.</string>
 	<!-- bookmark button text -->
-	<string name="bookmark">bookmark</string>
+	<string name="bookmark">Save</string>
 	<!-- map is not downloaded -->
 	<string name="not_found_map">The map for your location is not downloaded</string>
 	<!-- location service disabled -->
@@ -675,7 +675,7 @@
 	<string name="p2p_start">Start</string>
 	<string name="p2p_planning">Planning…</string>
 	<string name="p2p_from_here">Route from</string>
-	<string name="p2p_to_here">Route to</string>
+	<string name="p2p_to_here">Go</string>
 	<string name="p2p_only_from_current">Navigation is available only from your current location.</string>
 	<string name="p2p_reroute_from_current">Do you want us to plan a route from your current location?</string>
 	<string name="whats_new_next_button">Next</string>
