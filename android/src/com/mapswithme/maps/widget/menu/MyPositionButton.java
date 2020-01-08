@@ -57,11 +57,14 @@ public class MyPositionButton
           break;
 
         case LocationState.FOLLOW:
-          image = Graphics.tint(mButton.getContext(), R.drawable.ic_follow, R.attr.colorAccent);
+//          image = Graphics.tint(mButton.getContext(), R.drawable.ic_follow, R.attr.colorAccent);
+          image = Graphics.tint(mButton.getContext().getResources().getDrawable(R.drawable.ic_follow),  mButton.getContext().getResources().getColor(R.color.fonekk_green_1));
           break;
 
         case LocationState.FOLLOW_AND_ROTATE:
-          image = Graphics.tint(mButton.getContext(), R.drawable.ic_follow_and_rotate, R.attr.colorAccent);
+//          image = Graphics.tint(mButton.getContext(), R.drawable.ic_follow_and_rotate, R.attr.colorAccent);
+          image = Graphics.tint(mButton.getContext().getResources().getDrawable(R.drawable.ic_follow_and_rotate),  mButton.getContext().getResources().getColor(R.color.fonekk_green_1));
+
           break;
 
         default:
