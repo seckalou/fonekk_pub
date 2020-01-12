@@ -47,8 +47,8 @@
               android:id="@+id/vehicle"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginStart="@dimen/routing_selector_wheel_margin"
               android:layout_marginLeft="@dimen/routing_selector_wheel_margin"
+              android:layout_marginStart="@dimen/routing_selector_wheel_margin"
               tools:button="@drawable/ic_car"
               tools:buttonTint="?colorAccent" />
 
@@ -56,10 +56,10 @@
               android:id="@+id/pedestrian"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginStart="12dp"
               android:layout_marginLeft="12dp"
-              android:layout_marginEnd="12dp"
+              android:layout_marginStart="12dp"
               android:layout_marginRight="12dp"
+              android:layout_marginEnd="12dp"
               tools:button="@drawable/ic_pedestrian"
               tools:buttonTint="?iconTintLight" />
 
@@ -67,8 +67,8 @@
               android:id="@+id/transit"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginEnd="@dimen/margin_half_plus"
               android:layout_marginRight="@dimen/margin_half_plus"
+              android:layout_marginEnd="@dimen/margin_half_plus"
               android:visibility="invisible"
               tools:button="@drawable/ic_transit"
               tools:buttonTint="?iconTintLight" />
@@ -77,8 +77,8 @@
               android:id="@+id/bicycle"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginEnd="12dp"
               android:layout_marginRight="12dp"
+              android:layout_marginEnd="12dp"
               android:visibility="invisible"
               tools:button="@drawable/ic_bike"
               tools:buttonTint="?iconTintLight" />
@@ -87,8 +87,8 @@
               android:id="@+id/taxi"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_marginEnd="@dimen/routing_selector_wheel_margin"
               android:layout_marginRight="@dimen/routing_selector_wheel_margin"
+              android:layout_marginEnd="@dimen/routing_selector_wheel_margin"
               android:visibility="invisible"
               tools:button="@drawable/ic_taxi"
               tools:buttonTint="?iconTintLight" />
