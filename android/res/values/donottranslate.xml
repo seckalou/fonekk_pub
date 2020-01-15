@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="shared_user_label" translatable="false">Maps With Me</string>
+  <string name="shared_user_label" translatable="false">Fonekk</string>
 
   <!-- Dev facebook credentials
   <string name="facebook_app_id" translatable="false">462405334160274</string>
@@ -32,7 +32,7 @@
   <string name="pref_play_services" translatable="false">PlayServicesEnabled</string>
   <string name="pref_enable_logging" translatable="false">EnableLogging</string>
   <string name="pref_emulate_bad_external_storage" translatable="false">EmulateBadExternalStorage</string>
-  <string name="pref_about" translatable="false">AboutMapsWithMe</string>
+  <string name="pref_about" translatable="false">AboutFonekk</string>
   <string name="pref_rate_app" translatable="false">RateApp</string>
   <string name="pref_help" translatable="false">Help</string>
   <string name="pref_copyright" translatable="false">Copyright</string>
@@ -51,7 +51,7 @@
   <string name="pref_tts_info" translatable="false">TtsInfo</string>
   <string name="pref_tts_info_link" translatable="false">TtsInfoLink</string>
   <string name="pref_speed_cameras" translatable="false">SpeedCameras</string>
-  <string name="tts_info_link" translatable="false">https://support.maps.me/hc/en-us/articles/208628985-How-can-I-check-TTS-settings-on-my-Android-device-</string>
+  <string name="tts_info_link" translatable="false"></string>
   <string name="pref_autodownload" translatable="false">AutoDownloadMap</string>
   <string name="pref_backupbookmarks" translatable="false">BackupBookmarks</string>
   <string name="pref_3d" translatable="false">3D</string>
