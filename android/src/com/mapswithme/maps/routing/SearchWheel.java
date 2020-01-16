@@ -250,16 +250,16 @@ class SearchWheel implements View.OnClickListener
         return;
       }
 
-      if (mIsExpanded)
-      {
+      //if (mIsExpanded)
+      //{
         showSearchInParent();
-        return;
-      }
+        //return;
+      //}
 
-      toggleSearchLayout();
+      //toggleSearchLayout();
       break;
     case R.id.touch_interceptor:
-      toggleSearchLayout();
+      //oggleSearchLayout();
       break;
     case R.id.search_fuel:
     case R.id.search_parking:
@@ -292,6 +292,6 @@ class SearchWheel implements View.OnClickListener
                                    null /* hotelsFilter */, null /* bookingParams */);
     refreshSearchButtonImage();
 
-    toggleSearchLayout();
+    //toggleSearchLayout();
   }
 }

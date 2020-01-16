@@ -1723,8 +1723,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
   public void updateMenu()
   {
     adjustMenuLineFrameVisibility();
-    mNavigationController.showSearchButtons(RoutingController.get().isPlanning()
-                                            || RoutingController.get().isBuilt());
+    mNavigationController.showSearchButtons(true
+//                                            RoutingController.get().isPlanning()
+//                                            || RoutingController.get().isBuilt()
+    );
 
     if (RoutingController.get().isNavigating())
     {
