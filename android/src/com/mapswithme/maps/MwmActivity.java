@@ -1521,6 +1521,10 @@ public class MwmActivity extends BaseMwmFragmentActivity
   @Override
   public void onMapObjectActivated(final MapObject object)
   {
+
+    if (RoutingController.get().isNavigating())
+      return;
+
     if (MapObject.isOfType(MapObject.API_POINT, object))
     {
       final ParsedMwmRequest request = ParsedMwmRequest.getCurrentRequest();
