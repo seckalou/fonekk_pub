@@ -2452,12 +2452,12 @@ public class MwmActivity extends BaseMwmFragmentActivity
     {
       TipsApi api = TipsApi.requestCurrent(getActivity(), getActivity().getClass());
       LOGGER.d(TAG, "TipsApi = " + api);
-      if (getItem() == api.getSiblingMenuItem())
-      {
-        api.createClickInterceptor().onInterceptClick(getActivity());
-        Statistics.INSTANCE.trackTipsEvent(Statistics.EventName.TIPS_TRICKS_CLICK, api.ordinal());
-      }
-      else
+//      if (getItem() == api.getSiblingMenuItem())
+//      {
+//        api.createClickInterceptor().onInterceptClick(getActivity());
+//        Statistics.INSTANCE.trackTipsEvent(Statistics.EventName.TIPS_TRICKS_CLICK, api.ordinal());
+//      }
+//      else
         onMenuItemClickInternal();
     }
 
