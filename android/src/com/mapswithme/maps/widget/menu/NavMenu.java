@@ -136,6 +136,6 @@ public class NavMenu extends BaseMenu
     @Framework.RouterType
     int routerType = Framework.nativeGetRouter();
     UiUtils.showIf(show && routerType != Framework.ROUTER_TYPE_PEDESTRIAN, mTts);
-    UiUtils.showIf(show && routerType == Framework.ROUTER_TYPE_VEHICLE, mTraffic);
+//    UiUtils.showIf(show && routerType == Framework.ROUTER_TYPE_VEHICLE, mTraffic);
   }
 }
