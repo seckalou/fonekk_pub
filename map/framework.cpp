@@ -2707,7 +2707,7 @@ void Framework::Save3dMode(bool allow3d, bool allow3dBuildings)
 void Framework::Load3dMode(bool & allow3d, bool & allow3dBuildings)
 {
   if (!settings::Get(kAllow3dKey, allow3d))
-    allow3d = true;
+    allow3d = false;
 
   if (!settings::Get(kAllow3dBuildingsKey, allow3dBuildings))
     allow3dBuildings = true;
