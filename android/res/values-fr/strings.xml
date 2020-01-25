@@ -1121,7 +1121,7 @@
 	<string name="button_accept_and_continue">Accepter et continuer</string>
 	<string name="button_learn_more">En savoir plus</string>
 	<string name="onboarding_storage_permissions_title">Autoriser l\'accès</string>
-	<string name="onboarding_storage_permissions_message">Modifiez les paramètres d’autorisation dans votre appareil. Pour utiliser \"fonnek\", il est nécessaire d’accéder au moins aux services suivants: localisation et storage.</string>
+	<string name="onboarding_storage_permissions_message">Modifiez les paramètres d’autorisation dans votre appareil. Pour utiliser fonekk, il est nécessaire d’accéder au moins aux services suivants: localisation et storage.</string>
 	<string name="button_exit">Quitter</string>
 	<string name="onboarding_detail_permissions_title">fonnek doit avoir accès à</string>
 	<!-- Default permission's name from Android settings. -->

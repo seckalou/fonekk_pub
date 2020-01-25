@@ -23,7 +23,8 @@
 
   <ProgressBar
       android:id="@+id/progress_bar"
-      style="@android:style/Widget.Material.ProgressBar.Horizontal"
+      style="@android:style/Widget.Material.ProgressBar"
+      android:indeterminateTint="@color/fonekk_green_1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_below="@+id/anchor_center"
@@ -41,17 +42,17 @@
 
   <ImageView
       android:id="@+id/imageView2"
-      android:layout_width="135dp"
-      android:layout_height="40dp"
+      android:layout_width="wrap_content"
+      android:layout_height="50dp"
       android:layout_below="@+id/progress_bar"
       android:layout_alignParentStart="true"
       android:layout_alignParentLeft="true"
       android:layout_alignParentEnd="true"
       android:layout_alignParentRight="true"
-      android:layout_marginStart="140dp"
-      android:layout_marginLeft="140dp"
+      android:layout_marginStart="130dp"
+      android:layout_marginLeft="130dp"
       android:layout_marginTop="80dp"
-      android:layout_marginEnd="136dp"
-      android:layout_marginRight="136dp"
+      android:layout_marginEnd="130dp"
+      android:layout_marginRight="130dp"
       app:srcCompat="@drawable/name_logo" />
 </RelativeLayout>

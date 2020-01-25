@@ -1150,7 +1150,7 @@
 	<string name="button_accept_and_continue">Accept and continue</string>
 	<string name="button_learn_more">Learn more</string>
 	<string name="onboarding_storage_permissions_title">Grant Access</string>
-	<string name="onboarding_storage_permissions_message">Please grant \"fonnek\" at least the following permissions in your device settings: Location and Storage. Otherwise you will not be able to use it.</string>
+	<string name="onboarding_storage_permissions_message">Please grant \"fonekk\" at least the following permissions in your device settings: Location and Storage. Otherwise you will not be able to use it.</string>
 	<string name="button_exit">Exit</string>
 	<string name="onboarding_detail_permissions_title">fonnek needs access to</string>
 	<!-- Default permission's name from Android settings. -->
