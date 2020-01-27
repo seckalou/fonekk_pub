@@ -6,6 +6,7 @@ export PYTHONDONTWRITEBYTECODE=1
 
 OMIM_PATH="${OMIM_PATH:-$(dirname "$0")/../..}"
 DATA_PATH="${DATA_PATH:-$OMIM_PATH/data}"
+DATA_PATH_FOR_CSS="${DATA_PATH_FOR_CSS:-$OMIM_PATH/fonekk_priv/data}"
 
 function BuildDrawingRules() {
   styleType=$1
@@ -16,7 +17,7 @@ function BuildDrawingRules() {
   rm "$DATA_PATH"/drules_proto$suffix.{bin,txt} || true
   # Run script to build style
   python "$OMIM_PATH/tools/kothic/src/libkomwm.py" --txt \
-    -s "$DATA_PATH/styles/$styleType/style-$styleName/style.mapcss" \
+    -s "$DATA_PATH_FOR_CSS/styles/$styleType/style-$styleName/style.mapcss" \
     -o "$DATA_PATH/drules_proto$suffix"
 }
 

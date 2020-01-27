@@ -42582,7 +42582,7 @@ colors {
   }
   value {
     name: "RouteOutline"
-    color: 352205
+    color: 21760
   }
   value {
     name: "RatingHorrible"
@@ -42597,7 +42597,7 @@ colors {
   }
   value {
     name: "Arrow3DObsolete"
-    color: 1216522952
+    color: 1216192893
   }
   value {
     name: "TrafficUnknown"
@@ -42799,7 +42799,7 @@ colors {
   }
   value {
     name: "Arrow3D"
-    color: 5286655
+    color: 101377
   }
   value {
     name: "TrafficTempBlock"
@@ -42864,7 +42864,7 @@ colors {
   }
   value {
     name: "Route"
-    color: 34815
+    color: 5025616
   }
   value {
     name: "RouteArrowsMaskBicycle"
