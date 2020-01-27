@@ -36,8 +36,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:headRadius="@dimen/nav_progress_head"
-    app:progressColor="?colorAccent"
-    app:headColor="?colorAccent"
+    app:progressColor="@color/fonekk_green_2"
+    app:headColor="@color/fonekk_green_2"
     app:progressThickness="@dimen/nav_progress"
     app:secondaryProgressColor="@color/bg_routing_progress"
     app:secondaryProgressThickness="@dimen/nav_progress"/>
