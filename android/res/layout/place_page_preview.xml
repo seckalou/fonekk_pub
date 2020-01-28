@@ -141,22 +141,23 @@
     tools:background="#111111F0">
 
     <com.mapswithme.maps.widget.ArrowView
-      android:id="@+id/av__direction"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="@dimen/margin_half"
-      android:layout_marginRight="@dimen/margin_half"
-      android:tint="?colorAccent"
-      android:scaleType="center"
-      android:src="@drawable/ic_direction_pagepreview"/>
+        android:id="@+id/av__direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_half"
+        android:layout_marginRight="@dimen/margin_half"
+        android:scaleType="center"
+        android:src="@drawable/ic_direction_pagepreview"
+        android:tint="@color/base_green" />
 
     <TextView
-      android:id="@+id/tv__straight_distance"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="@style/MwmTextAppearance.PlacePage.Accent"
-      android:textSize="@dimen/text_size_title"
-      tools:text="2000 km"/>
+        android:id="@+id/tv__straight_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/MwmTextAppearance.PlacePage.Accent"
+        android:textColor="@color/fonekk_green_1"
+        android:textSize="@dimen/text_size_title"
+        tools:text="2000 km" />
   </LinearLayout>
 
   <include

@@ -9,4 +9,5 @@
   android:minWidth="@dimen/start_button_width"
   android:layout_gravity="center"
   android:text="@string/p2p_start"
+    android:background="@color/bg_statusbar"
   tools:showIn="@layout/menu_route_plan_line"/>
