@@ -24,7 +24,7 @@ public final class PermissionsUtils
   private static final String[] PERMISSIONS = new String[]
       {
           ACCESS_COARSE_LOCATION,
-          ACCESS_FINE_LOCATION, READ_PHONE_STATE,
+          ACCESS_FINE_LOCATION, //READ_PHONE_STATE,
               WRITE_EXTERNAL_STORAGE
       };
 
@@ -104,10 +104,10 @@ public final class PermissionsUtils
                                ? result.get(ACCESS_COARSE_LOCATION) : false)
                               || (result.containsKey(ACCESS_FINE_LOCATION)
                                   ? result.get(ACCESS_FINE_LOCATION) : false);
-    boolean phoneStateGranted = result.containsKey(READ_PHONE_STATE)
-                                ? result.get(READ_PHONE_STATE) : false;
+//    boolean phoneStateGranted = result.containsKey(READ_PHONE_STATE)
+//                                ? result.get(READ_PHONE_STATE) : false;
 
-    return new PermissionsResult(externalStorageGranted, locationGranted, phoneStateGranted);
+    return new PermissionsResult(externalStorageGranted, locationGranted, true);
   }
 
   public static void requestPermissions(@NonNull Activity activity, int code)
