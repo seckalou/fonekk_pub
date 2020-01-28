@@ -434,7 +434,6 @@ public class MwmActivity extends BaseMwmFragmentActivity
       return;
     }
 
-
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.your_name);
     final EditText input = new EditText(builder.getContext());

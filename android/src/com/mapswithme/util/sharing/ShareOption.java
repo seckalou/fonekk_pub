@@ -94,6 +94,20 @@ public abstract class ShareOption
 //      SharingHelper.shareOutside(new TextShareable(activity, body));
     }
 
+    public void shareMapObject(Activity activity, @NonNull MapObject mapObject, @Nullable Sponsored sponsored)
+    {
+
+      final String ge0Url = ""; //Framework.nativeGetGe0Url(mapObject.getLat(), mapObject.getLon(), mapObject.getScale(), "");
+      final String httpUrl = Framework.getHttpGe0Url(mapObject.getLat(), mapObject.getLon(), mapObject.getScale(), "");
+      final int bodyId = R.string.bookmark_share_sms;
+      final String body = activity.getString(bodyId, ge0Url, httpUrl);
+
+      share(activity, body);
+
+//    SharingHelper.shareOutside(new MapObjectShareable(activity, mapObject, sponsored)
+//                 .setBaseIntent(new Intent(mBaseIntent)), mNameResId);
+    }
+
     public void share(Activity activity, String body, @StringRes int titleRes)
     {
       SharingHelper.shareOutside(new TextShareable(activity, body), titleRes);
