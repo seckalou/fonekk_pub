@@ -25,7 +25,8 @@
         android:gravity="center_horizontal"
         android:textAppearance="@style/MwmTextAppearance.Title"
         tools:targetApi="jelly_bean"
-        tools:text="" />
+        tools:text=""
+        android:textColor="@color/fonekk_green_1"/>
 
     <ImageView
         android:id="@+id/iv__image"
