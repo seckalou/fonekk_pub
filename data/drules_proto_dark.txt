@@ -69621,7 +69621,7 @@ colors {
   }
   value {
     name: "RoutePedestrian"
-    color: 1308604747
+    color: 855659776
   }
   value {
     name: "RouteMarkPrimaryText"
