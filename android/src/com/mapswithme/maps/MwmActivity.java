@@ -24,7 +24,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mapswithme.maps.Framework.MapObjectListener;
@@ -136,6 +138,10 @@ import com.mapswithme.util.Config;
 
 import java.util.List;
 import java.util.Stack;
+
+import android.view.LayoutInflater;
+import 	android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
 
 public class MwmActivity extends BaseMwmFragmentActivity
                       implements MapObjectListener,
@@ -425,7 +431,7 @@ public class MwmActivity extends BaseMwmFragmentActivity
       EditorActivity.start(this);
   }
 
-  private String mUserName = "";
+  private String mUserName = Config.getUserName();
 
   private void getUserNameIfNecessaryAndShareLocation()
   {
@@ -435,16 +441,24 @@ public class MwmActivity extends BaseMwmFragmentActivity
     }
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.your_name);
-    final EditText input = new EditText(builder.getContext());
-    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT);
-    input.setLayoutParams(lp);
-    builder.setView(input);
-    builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int id) {
-        mUserName = input.getText().toString();
+
+    LayoutInflater inflater = this.getLayoutInflater();
+    View dialogView = inflater.inflate(R.layout.rounded_corner_dialog, null);
+
+    final TextView dialogTilte = (TextView) dialogView.findViewById(R.id.dialogTilte);
+    final EditText dialogText = (EditText) dialogView.findViewById(R.id.dialogText);;
+    final Button dialogButtuonOk = (Button) dialogView.findViewById(R.id.dialogButtuonOk);
+
+    dialogTilte.setText(R.string.your_name);
+
+    builder.setView(dialogView);
+    AlertDialog dialog = builder.create();
+
+    dialogButtuonOk.setOnClickListener(new View.OnClickListener(){
+
+      @Override
+      public void onClick(View view) {
+        mUserName = dialogText.getText().toString();
 
         if(mUserName.isEmpty()) {
 
@@ -457,16 +471,13 @@ public class MwmActivity extends BaseMwmFragmentActivity
         }
 
         Config.setUserName(mUserName);
+        dialog.dismiss();
 
         shareMyLocation();
       }
     });
-    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int id) {
-        // User cancelled the dialog
-      }
-    });
-    AlertDialog dialog = builder.create();
+
+    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     dialog.show();
 
   }
@@ -480,16 +491,24 @@ public class MwmActivity extends BaseMwmFragmentActivity
 
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.your_name);
-    final EditText input = new EditText(builder.getContext());
-    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT);
-    input.setLayoutParams(lp);
-    builder.setView(input);
-    builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int id) {
-        mUserName = input.getText().toString();
+
+    LayoutInflater inflater = this.getLayoutInflater();
+    View dialogView = inflater.inflate(R.layout.rounded_corner_dialog, null);
+
+    final TextView dialogTilte = (TextView) dialogView.findViewById(R.id.dialogTilte);
+    final EditText dialogText = (EditText) dialogView.findViewById(R.id.dialogText);;
+    final Button dialogButtuonOk = (Button) dialogView.findViewById(R.id.dialogButtuonOk);
+
+    dialogTilte.setText(R.string.your_name);
+
+    builder.setView(dialogView);
+    AlertDialog dialog = builder.create();
+
+    dialogButtuonOk.setOnClickListener(new View.OnClickListener(){
+
+      @Override
+      public void onClick(View view) {
+        mUserName = dialogText.getText().toString();
 
         if(mUserName.isEmpty()) {
 
@@ -502,17 +521,15 @@ public class MwmActivity extends BaseMwmFragmentActivity
         }
 
         Config.setUserName(mUserName);
+        dialog.dismiss();
 
         invite();
       }
     });
-    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int id) {
-        // User cancelled the dialog
-      }
-    });
-    AlertDialog dialog = builder.create();
+
+    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     dialog.show();
+
 
   }
 
