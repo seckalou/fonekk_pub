@@ -81,8 +81,8 @@ public class NavMenu extends BaseMenu
 
   public void refreshTts()
   {
-    mTts.setImageDrawable(TtsPlayer.isEnabled() ? Graphics.tint(mFrame.getContext(), R.drawable.ic_voice_on,
-                                                                R.attr.colorAccent)
+    mTts.setImageDrawable(TtsPlayer.isEnabled() ? Graphics.tint(mFrame.getContext().getDrawable(R.drawable.ic_voice_on),
+                                                                mFrame.getContext().getResources().getColor(R.color.fonekk_green_2))
                                                 : Graphics.tint(mFrame.getContext(), R.drawable.ic_voice_off));
   }
 

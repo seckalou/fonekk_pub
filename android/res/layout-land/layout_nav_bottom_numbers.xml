@@ -7,8 +7,8 @@
   android:orientation="horizontal"
   android:paddingLeft="@dimen/nav_numbers_margin"
   android:paddingStart="@dimen/nav_numbers_margin"
-  android:layout_marginRight="@dimen/nav_toggle"
-  android:layout_marginEnd="@dimen/nav_toggle"
+  android:layout_marginRight="50dp"
+  android:layout_marginEnd="50dp"
   android:background="?clickableBackground"
   tools:background="#3000FF00"
   tools:ignore="RtlSymmetry">
