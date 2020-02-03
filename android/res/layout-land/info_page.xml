@@ -18,6 +18,7 @@
       tools:src="@drawable/img_welcome"/>
   </FrameLayout>
   <LinearLayout
+      android:id="@+id/theLayout"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
