@@ -527,6 +527,11 @@ public class PlacePageView extends NestedScrollView
             color = ThemeUtils.getColor(getContext(), R.attr.iconTint);
             break;
 
+          case ROUTE_TO:
+            color = getResources().getColor(R.color.fonekk_green_2);
+            icon.setColorFilter(color);
+            break;
+
           default:
             color = ThemeUtils.getColor(getContext(), R.attr.iconTint);
             icon.setColorFilter(color);
