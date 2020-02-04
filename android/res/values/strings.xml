@@ -161,7 +161,7 @@
 	<!-- Add bookmark dialog - bookmark color -->
 	<string name="color">Color</string>
 	<!-- Default bookmarks set name -->
-	<string name="core_my_places">My Places</string>
+	<string name="core_my_places">Saved</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Name</string>
 	<!-- Editor title above street and house number -->

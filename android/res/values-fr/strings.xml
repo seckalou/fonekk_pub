@@ -150,7 +150,7 @@
 	<!-- Add bookmark dialog - bookmark color -->
 	<string name="color">Couleur</string>
 	<!-- Default bookmarks set name -->
-	<string name="core_my_places">Mes endroits</string>
+	<string name="core_my_places">Enregistré</string>
 	<!-- Add bookmark dialog - bookmark name -->
 	<string name="name">Nom</string>
 	<!-- Editor title above street and house number -->
