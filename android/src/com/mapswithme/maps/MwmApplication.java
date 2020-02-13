@@ -270,6 +270,8 @@ public class MwmApplication extends Application
     if (mFrameworkInitialized)
       return;
 
+    MapManager.copyMapFromAsset(this,"Senegal");
+
     nativeInitFramework();
 
     MapManager.nativeSubscribe(mStorageCallbacks);

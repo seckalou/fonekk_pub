@@ -3,6 +3,7 @@ package com.mapswithme.maps.downloader;
 import android.app.Activity;
 import android.app.Application;
 import android.content.DialogInterface;
+import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -12,11 +13,17 @@ import android.text.TextUtils;
 
 import com.mapswithme.maps.R;
 import com.mapswithme.util.ConnectionState;
+import com.mapswithme.util.StorageUtils;
 import com.mapswithme.util.Utils;
 import com.mapswithme.util.statistics.Statistics;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.util.List;
+import android.content.Context;
 
 @UiThread
 public final class MapManager
@@ -81,6 +88,59 @@ public final class MapManager
     }
 
     Statistics.INSTANCE.trackEvent(event, Statistics.params().add(Statistics.EventParam.TYPE, text));
+  }
+
+  public static void copyMapFromAsset(Context context, String countryId) {
+
+    AssetManager assetManager = context.getAssets();
+    String[] files = null;
+    try {
+      files = assetManager.list("");
+    } catch (Exception e) {
+    }
+
+    countryId = countryId.toLowerCase();
+
+    if (files != null) for (String filename : files) {
+
+      if(!filename.toLowerCase().startsWith(countryId))
+        continue;
+
+      InputStream in = null;
+      OutputStream out = null;
+      String outPath;
+      try {
+        in = assetManager.open(filename);
+        outPath = StorageUtils.getSettingsPath();
+        outPath = StorageUtils.getStoragePath(outPath);
+        File outFile = new File(outPath, filename);
+        out = new FileOutputStream(outFile);
+        copyFile(in, out);
+      } catch(Exception e) {
+      }
+      finally {
+        if (in != null) {
+          try {
+            in.close();
+          } catch (Exception e) {
+          }
+        }
+        if (out != null) {
+          try {
+            out.close();
+          } catch (Exception e) {
+            // NOOP
+          }
+        }
+      }
+    }
+  }
+  private static void copyFile(InputStream in, OutputStream out) throws Exception {
+    byte[] buffer = new byte[1024];
+    int read;
+    while((read = in.read(buffer)) != -1){
+      out.write(buffer, 0, read);
+    }
   }
 
   public static void showError(final Activity activity, final StorageCallbackData errorData,
