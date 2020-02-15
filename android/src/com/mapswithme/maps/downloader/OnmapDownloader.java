@@ -108,8 +108,8 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
       {
         boolean hasParent = !CountryItem.isRoot(mCurrentCountry.topmostParentId);
 
-        UiUtils.showIf(progress || enqueued, mProgress);
-        UiUtils.showIf(!progress && !enqueued, mButton);
+//        UiUtils.showIf(progress || enqueued, mProgress);
+//        UiUtils.showIf(!progress && !enqueued, mButton);
         UiUtils.showIf(hasParent, mParent);
 
         if (hasParent)
@@ -166,7 +166,7 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
           }
         }
 
-        mSize.setText(sizeText);
+//        mSize.setText(sizeText);
       }
     }
 
@@ -181,6 +181,8 @@ public class OnmapDownloader implements MwmActivity.LeftAnimationTrackListener
     mParent = (TextView)mFrame.findViewById(R.id.downloader_parent);
     mTitle = (TextView)mFrame.findViewById(R.id.downloader_title);
     mSize = (TextView)mFrame.findViewById(R.id.downloader_size);
+    
+    mSize.setText(R.string.not_supported_country);
 
     View controls = mFrame.findViewById(R.id.downloader_controls_frame);
     mProgress = (WheelProgressView) controls.findViewById(R.id.wheel_downloader_progress);

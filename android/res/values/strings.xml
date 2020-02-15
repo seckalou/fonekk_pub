@@ -2765,4 +2765,5 @@
 	<string name="tips_main_button_message">By pressing this button you can share your location with other by sms, watsapp, messenger etc...</string>
 	<string name="tips_invite_button_title">Invite others</string>
 	<string name="tips_invite_button_message">By pressing this buttion you can invite others to share their location with you.</string>
+    <string name="not_supported_country">Country not yet supported!</string>
 </resources>

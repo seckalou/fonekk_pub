@@ -2165,4 +2165,5 @@
 	<string name="tips_invite_button_title">Inviter d\'autres</string>
 	<string name="tips_invite_button_message">En appuyant ici, vous pouvez inviter d\'autres à partager leur position avec vous.</string>
 	<string name="accept_and_continue">Accepter et continuer</string>
+	<string name="not_supported_country">Ce pays n\'est pas encore disponible!</string>
 </resources>

@@ -60,7 +60,7 @@
         app:wheelProgressColor="?colorAccent"
         app:wheelSecondaryColor="?dividerHorizontal"
         app:wheelThickness="@dimen/margin_eighth"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:visibility="visible"/>
     </FrameLayout>
     <LinearLayout
