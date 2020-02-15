@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto"
-    android:sharedUserId="com.fonekk"
+    android:sharedUserId="com.ananga"
     android:sharedUserLabel="@string/shared_user_label">
 
   <!-- Mentioned MoPub dependencies use 16 API level as a min SDK version, which conflicts
@@ -113,10 +113,10 @@
         <category android:name="android.intent.category.BROWSABLE"/>
 
         <data
-            android:host="fonekk.online"
+            android:host="ananga.online"
             android:scheme="https"/>
         <data
-            android:host="fonekk.online"
+            android:host="ananga.online"
             android:scheme="http"/>
       </intent-filter>
 
