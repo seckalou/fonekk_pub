@@ -227,7 +227,7 @@ public class Factory
       {
         final Uri data = intent.getData();
         if (data != null)
-          return "fonekk.online".equals(data.getHost());
+          return  Constants.Url.DOMAIN.equals(data.getHost());
       }
 
       return false;

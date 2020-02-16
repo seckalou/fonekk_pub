@@ -20,6 +20,7 @@ public final class Constants
     public static final String MAILTO_SCHEME = "mailto:";
     public static final String MAIL_SUBJECT = "?subject=";
     public static final String MAIL_BODY = "&body=";
+    public static final String DOMAIN = "ananga.online";
     public static final String HTTP_GE0_PREFIX = "http://ananga.online/";
 
     public static final String PLAY_MARKET_HTTPS_APP_PREFIX = "https://play.google.com/store/apps/details?id=";

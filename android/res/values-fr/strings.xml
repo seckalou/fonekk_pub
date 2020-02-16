@@ -254,7 +254,7 @@
 	<!-- No, thanks -->
 	<string name="no_thanks">Non, merci</string>
 	<!-- Share one specific bookmark using SMS, %1$@ contains ge0:// and %2$@ http://ge0.me link. @NOTE non-ascii symbols in the link will make 70 bytes sms instead of 140 -->
-	<string name="bookmark_share_sms">Hé, regarde mon épingle sur ananga ! %1$s ou %2$s. Les cartes hors ligne ne sont pas installées ? Les télécharger ici : http://ananga/get</string>
+	<string name="bookmark_share_sms">Hey! Just pour partager cet endroit sur ananga %1$s %2$s.</string>
 	<!-- Share my position using SMS, %1$@ contains ge0:// and %2$@ http://ge0.me link WITHOUT NAME. @NOTE non-ascii symbols in the link will make 70 bytes sms instead of 140 -->
 	<string name="my_position_share_sms"> veut partager sa position actuelle avec vous sur ananga! Pour accepter, cliquez %1$s. %2$s</string>
 	<!-- Subject for emailed bookmark -->
