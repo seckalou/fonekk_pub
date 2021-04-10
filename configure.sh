@@ -62,6 +62,12 @@ if git clone --depth 1 "$PRIVATE_REPO" "$TMP_REPO_DIR"; then
   rm -rf "$TMP_REPO_DIR/.git" "$TMP_REPO_DIR/README.md"
   cp -Rv "$TMP_REPO_DIR"/private.h "$BASE_PATH"
   cp -Rv "$TMP_REPO_DIR"/google-services.json "$BASE_PATH"/android/
+  cp -Rv "$TMP_REPO_DIR"/secure.properties "$PRIVATE_PROPERTIES"
+  cp -Rv "$TMP_REPO_DIR"/fabric.properties "$PRIVATE_FABRIC_PROPERTIES"
+  cp -Rv "$TMP_REPO_DIR"/pushwoosh.properties "$PRIVATE_PUSHWOOSH_PROPERTIES"
+  cp -Rv "$TMP_REPO_DIR"/libnotify.properties "$PRIVATE_LIBNOTIFY_PROPERTIES"
+  cp -Rv "$TMP_REPO_DIR"/network_security_config.xml "$PRIVATE_NETWORK_CONFIG"
   rm -rf "$TMP_REPO_DIR"
+  cat "$DEFAULT_PRIVATE_CAR_MODEL_COEFS" > "$PRIVATE_CAR_MODEL_COEFS"
   echo "Private files have been updated."
 fi
