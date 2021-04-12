@@ -60,7 +60,7 @@ function BuildSkin() {
 }
 
 # Cleanup
-cleanup=(resources-{6plus,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}{_dark,_clear})
+cleanup=(resources-{{6plus,mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}{_dark,_clear}})
 for item in ${cleanup[*]}
 do
   rm -rf "$DATA_OUT_PATH/$item" || true
